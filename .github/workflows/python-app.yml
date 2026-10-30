@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:              # ← op dezelfde hoogte als runs-on
+      run:
+        working-directory: calculator
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
