@@ -4,9 +4,3 @@ class Calculator:
 
     def difference(self, a, b):
         return a - b
-
-    def product(self, a, b):
-        return a * b
-
-    def quotient(self, a, b):
-        return a / b

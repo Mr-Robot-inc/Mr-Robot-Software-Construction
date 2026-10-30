@@ -60,7 +60,7 @@ jobs:
     - name: Run code coverage
       run: |
         # Run coverage report
-        #coverage xml
+        coverage xml
 
         # Report and write to summary.
         coverage report --format=markdown >> $GITHUB_STEP_SUMMARY
