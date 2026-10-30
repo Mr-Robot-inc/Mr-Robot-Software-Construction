@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:              # ← op dezelfde hoogte als runs-on
+    defaults:
       run:
         working-directory: calculator
     steps:
@@ -35,6 +35,9 @@ jobs:
   test: 
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: calculator
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
