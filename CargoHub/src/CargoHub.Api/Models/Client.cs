@@ -1,4 +1,4 @@
-namespace CargoHub.Api.Models;
+﻿namespace CargoHub.Api.Models;
 
 public class Client : IEntity
 {

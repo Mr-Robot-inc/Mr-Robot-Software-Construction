@@ -2,25 +2,6 @@
   <Folder Name="/src/">
     <Project Path="src/CargoHub.Api/CargoHub.Api.csproj" />
   </Folder>
-  <Folder Name="/src/CargoHub.Application/" />
-  <Folder Name="/src/CargoHub.Application/Entities/">
-    <File Path="base.cs" />
-    <File Path="client.cs" />
-    <File Path="inventory.cs" />
-    <File Path="item.cs" />
-    <File Path="itemGroup.cs" />
-    <File Path="itemLine.cs" />
-    <File Path="itemType.cs" />
-    <File Path="location.cs" />
-    <File Path="order.cs" />
-    <File Path="orderItem.cs" />
-    <File Path="shipment.cs" />
-    <File Path="shipmentItem.cs" />
-    <File Path="supplier.cs" />
-    <File Path="transfer.cs" />
-    <File Path="transferItem.cs" />
-    <File Path="warehouse.cs" />
-  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/CargoHub.Tests/CargoHub.Tests.csproj" />
   </Folder>
