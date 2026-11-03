@@ -12,6 +12,6 @@ public class Client : IEntity
     public string ContactName { get; set; }
     public string ContactPhone { get; set; }
     public string ContactEmail { get; set; }
-    public string CreateadAt { get; set; }
-    public string UpdatedAt { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
 }
