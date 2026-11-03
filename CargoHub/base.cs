@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace CargoHub.Application.Entities;
 
-public class Class1
+internal class Base
 {
-	public Class1()
-	{
-	}
+
 }
