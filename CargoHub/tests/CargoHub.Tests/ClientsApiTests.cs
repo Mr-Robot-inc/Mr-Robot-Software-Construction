@@ -83,4 +83,12 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
 
         Assert.Equal(HttpStatusCode.NotFound, put.StatusCode);
     }
+
+    [Fact]
+    public async Task Delete_Unknown_Id_Returns404()
+    {
+        var response = await _client.DeleteAsync("/api/clients/999");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
 }
