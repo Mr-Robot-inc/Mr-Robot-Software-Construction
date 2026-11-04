@@ -1,7 +1,7 @@
 using CargoHub.Api.Data;
 using CargoHub.Api.Repositories;
 using CargoHub.Api.Services;
-using Catalog.Api.Services;
+using CargoHub.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
