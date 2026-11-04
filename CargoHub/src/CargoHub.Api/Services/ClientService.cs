@@ -49,6 +49,26 @@ public class ClientService : IClientService
         return ToDto(client);
     }
 
+    public async Task<ClientDto> UpdateAsync(int id, UpdateClientDto dto)
+    {
+        var client = await _clients.GetByIdAsync(id);
+
+        client.Name = dto.Name;
+        client.Address = dto.Address;
+        client.City = dto.City;
+        client.ZipCode = dto.ZipCode;
+        client.Province = dto.Province;
+        client.Country = dto.Country;
+        client.ContactName = dto.ContactName;
+        client.ContactPhone = dto.ContactPhone;
+        client.ContactEmail = dto.ContactEmail;
+        client.UpdatedAt = DateTime.UtcNow;
+
+        await _clients.SaveChangesAsync();
+
+        return ToDto(client);
+    }
+
 
     private static ClientDto ToDto(Client client) => new()
     {

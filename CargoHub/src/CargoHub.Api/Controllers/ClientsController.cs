@@ -32,4 +32,11 @@ public class ClientsController : ControllerBase
         var created = await _clients.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<ClientDto>> Update(int id, UpdateClientDto dto)
+    {
+        var updated = await _clients.UpdateAsync(id, dto);
+        return updated is null ? NotFound() : Ok(updated);
+    }
 }
