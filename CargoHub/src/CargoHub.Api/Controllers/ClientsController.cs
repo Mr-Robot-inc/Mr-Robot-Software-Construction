@@ -25,4 +25,11 @@ public class ClientsController : ControllerBase
         var client = await _clients.GetByIdAsync(id);
         return client is null ? NotFound() : Ok(client);
     }
+
+    [HttpPost]
+    public async Task<ActionResult<ClientDto>> Create(CreateClientDto dto)
+    {
+        var created = await _clients.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+    }
 }
