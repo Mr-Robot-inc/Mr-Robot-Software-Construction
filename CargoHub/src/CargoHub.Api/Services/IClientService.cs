@@ -1,4 +1,5 @@
 using CargoHub.Api.Dtos;
+using CargoHub.Api.Models;
 
 namespace CargoHub.Api.Services;
 
@@ -7,5 +8,6 @@ public interface IClientService
     Task<List<ClientDto>> GetAllAsync();
     Task<ClientDto?> GetByIdAsync(int id);
     Task<ClientDto> CreateAsync(CreateClientDto dto);
-    Task<ClientDto> UpdateAsync(int id, UpdateClientDto dto);
+    Task<ClientDto?> UpdateAsync(int id, UpdateClientDto dto);
+    Task<bool?> DeleteAsync(int id);
 }

@@ -39,4 +39,11 @@ public class ClientsController : ControllerBase
         var updated = await _clients.UpdateAsync(id, dto);
         return updated is null ? NotFound() : Ok(updated);
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult<bool>> Delete(int id)
+    {
+        var deleted = await _clients.DeleteAsync(id);
+        return deleted is false ? NotFound() : Ok(deleted);
+    }
 }

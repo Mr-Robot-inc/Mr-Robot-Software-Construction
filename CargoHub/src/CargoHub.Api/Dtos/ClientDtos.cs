@@ -18,7 +18,6 @@ public record ClientDto
 
 public record CreateClientDto
 {
-    public int Id { get; init; }
     public string Name { get; init; }
     public string Address { get; init; }
     public string City { get; init; }
@@ -34,7 +33,6 @@ public record CreateClientDto
 
 public record UpdateClientDto
 {
-    public int Id { get; init; }
     public string Name { get; init; }
     public string Address { get; init; }
     public string City { get; init; }

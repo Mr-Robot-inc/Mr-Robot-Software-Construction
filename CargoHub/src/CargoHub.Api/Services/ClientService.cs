@@ -3,7 +3,7 @@ using CargoHub.Api.Models;
 using CargoHub.Api.Repositories;
 using CargoHub.Api.Services;
 
-namespace Catalog.Api.Services;
+namespace CargoHub.Api.Services;
 
 public class ClientService : IClientService
 {
@@ -49,9 +49,10 @@ public class ClientService : IClientService
         return ToDto(client);
     }
 
-    public async Task<ClientDto> UpdateAsync(int id, UpdateClientDto dto)
+    public async Task<ClientDto?> UpdateAsync(int id, UpdateClientDto dto)
     {
         var client = await _clients.GetByIdAsync(id);
+        if (client is null) return null;
 
         client.Name = dto.Name;
         client.Address = dto.Address;
@@ -67,6 +68,17 @@ public class ClientService : IClientService
         await _clients.SaveChangesAsync();
 
         return ToDto(client);
+    }
+
+    public async Task<bool?> DeleteAsync(int id)
+    {
+        var client = await _clients.GetByIdAsync(id);
+        if (client is null) return null;
+
+        _clients.Delete(client);
+        await _clients.SaveChangesAsync();
+
+        return true;
     }
 
 
