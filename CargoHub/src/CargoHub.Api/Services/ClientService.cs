@@ -26,6 +26,30 @@ public class ClientService : IClientService
         return client is null ? null : ToDto(client);
     }
 
+    public async Task<ClientDto> CreateAsync(CreateClientDto dto)
+    {
+        var client = new Client
+        {
+            Name = dto.Name,
+            Address = dto.Address,
+            City = dto.City,
+            ZipCode = dto.ZipCode,
+            Province = dto.Province,
+            Country = dto.Country,
+            ContactName = dto.ContactName,
+            ContactPhone = dto.ContactPhone,
+            ContactEmail = dto.ContactEmail,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+
+        _clients.Add(client);
+        await _clients.SaveChangesAsync();
+
+        return ToDto(client);
+    }
+
+
     private static ClientDto ToDto(Client client) => new()
     {
         Id = client.Id,
