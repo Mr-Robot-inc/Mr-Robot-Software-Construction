@@ -1,10 +1,26 @@
-@baseUrl = http://localhost:5009
+@baseUrl = http://localhost:8080
 
 ### Alles ophalen
 GET {{baseUrl}}/api/clients
 
 ### Eén ophalen
 GET {{baseUrl}}/api/clients/1
+
+### Aanmaken
+POST {{baseUrl}}/api/clients
+Content-Type: application/json
+
+{
+  "name": "Frank Herbert","
+  "address": "Frank Herbert",
+  "city": "Frank Herbert",
+  "zipCode": "Frank Herbert",
+  "province": "Frank Herbert",
+  "country": "Frank Herbert",
+  "contactName": "Frank Herbert",
+  "contactEmail": "Frank herbert",
+  "contactPhone": "123412321"
+}
 
 ### Aanmaken without a field
 POST {{baseUrl}}/api/clients
