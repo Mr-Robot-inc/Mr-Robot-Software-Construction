@@ -1,4 +1,5 @@
-public class Item : IEntity 
+namespace CargoHub.Api.Models;
+public class Item : IEntity
 {
     public int Id { get; set; }
     public string Code { get; set; }

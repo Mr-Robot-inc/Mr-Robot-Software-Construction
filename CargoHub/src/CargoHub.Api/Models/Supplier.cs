@@ -1,3 +1,4 @@
+namespace CargoHub.Api.Models;
 public class Supplier : IEntity
 {
 	public int Id { get; set; }
