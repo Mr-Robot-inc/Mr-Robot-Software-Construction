@@ -1,0 +1,22 @@
+name: Runner test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Waar draai ik?
+        run: |
+          hostname
+          whoami
+          pwd
+      - name: Docker check
+        run: |
+          docker --version
+          docker compose version
+          docker ps
+      - name: Wat staat er in de repo?
+        run: ls -la

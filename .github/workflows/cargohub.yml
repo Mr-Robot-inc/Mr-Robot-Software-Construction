@@ -1,0 +1,63 @@
+name: cargohub
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "CargoHub/**"
+      - ".github/workflows/cargohub.yml"
+  pull_request:
+    paths:
+      - "CargoHub/**"
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: CargoHub
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Test
+        run: dotnet test --no-build -c Release --logger "trx;LogFileName=results.trx" --collect:"XPlat Code Coverage"
+
+      - name: Upload testresultaten
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: CargoHub/tests/**/TestResults/
+
+  deploy:
+    needs: build-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+    environment: production
+    defaults:
+      run:
+        working-directory: CargoHub
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start containers
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: docker compose up --build -d
+
+      - name: Status
+        run: docker compose ps
+
+      - name: Oude images opruimen
+        run: docker image prune -f
