@@ -76,6 +76,76 @@ namespace CargoHub.Api.Migrations
 
                     b.ToTable("Clients");
                 });
+
+            modelBuilder.Entity("CargoHub.Api.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BarCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("CaseSize")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("CommodityCode")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ItemGroupId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ItemLineId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ItemTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinPurchaseQty")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ModeNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("OrderMultiple")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PackagingType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SupplierSku")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<float>("UnitWeight")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+                });
 #pragma warning restore 612, 618
         }
     }
