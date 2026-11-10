@@ -11,7 +11,7 @@ POST {{baseUrl}}/api/clients
 Content-Type: application/json
 
 {
-  "name": "Frank Herbert","
+  "name": "Frank Herbert",
   "address": "Frank Herbert",
   "city": "Frank Herbert",
   "zipCode": "Frank Herbert",
