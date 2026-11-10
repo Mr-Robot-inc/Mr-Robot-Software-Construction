@@ -3,6 +3,9 @@
 ### Alles ophalen
 GET {{baseUrl}}/api/clients
 
+### Alles ophalen
+GET {{baseUrl}}/api/warehouses
+
 ### Eén ophalen
 GET {{baseUrl}}/api/clients/1
 
