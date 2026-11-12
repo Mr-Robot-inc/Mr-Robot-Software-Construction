@@ -58,7 +58,7 @@ Content-Type: application/json
 }
 
 ### Delete
-DELETE {{baseUrl}}/api/warehouses/1
+DELETE {{baseUrl}}/api/warehouses/4
 
 ### Bestaat niet -> verwacht 404
 DELETE {{baseUrl}}/api/warehouses/999
@@ -79,4 +79,3 @@ Content-Type: application/json
   "contactEmail": "frank@example.com",
   "contactPhone": "123412321"
 }
-```

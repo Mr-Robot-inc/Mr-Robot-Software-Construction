@@ -48,6 +48,7 @@ public class WarehouseService : IWarehouseService
     {
         var warehouse = await _warehouses.GetByIdAsync(id);
         if (warehouse is null) return null;
+
         warehouse.Code = dto.Code;
         warehouse.Name = dto.Name;
         warehouse.Address = dto.Address;
@@ -78,6 +79,7 @@ public class WarehouseService : IWarehouseService
         return new WarehouseDto
         {
             Id = warehouse.Id,
+            Code = warehouse.Code,
             Name = warehouse.Name,
             Address = warehouse.Address,
             City = warehouse.City,
