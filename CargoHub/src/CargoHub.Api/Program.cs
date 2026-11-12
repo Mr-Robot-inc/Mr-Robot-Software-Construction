@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IShipmentService, ShipmentService>();
 
 
 var app = builder.Build();
