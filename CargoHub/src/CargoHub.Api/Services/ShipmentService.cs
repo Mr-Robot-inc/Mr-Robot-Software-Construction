@@ -24,7 +24,6 @@ public class ShipmentService : IShipmentService
         var shipment = await _shipments.GetByIdAsync(id);
         return shipment is null ? null : ToDto(shipment);
     }
-
     public async Task<List<int>> GetOrderIdsInShipmentAsync(int id)
     {
         var shipment = await _shipments.GetByIdAsync(id);
@@ -46,18 +45,18 @@ public class ShipmentService : IShipmentService
             ShippingMethod = dto.ShippingMethod,
             PaymentType = dto.PaymentType
         };
-        _shipments.Add(shipment);
 
+        _shipments.Add(shipment);
         await _shipments.SaveChangesAsync();
+
         return ToDto(shipment);
     }
 
-    public async Task<ShipmentDto> UpdateAsync(int id, UpdateShipmentDto dto)
+    public async Task<ShipmentDto?> UpdateAsync(int id, UpdateShipmentDto dto)
     {
         var shipment = await _shipments.GetByIdAsync(id);
 
         if (shipment is null) return null;
-
         shipment.Reference = dto.Reference;
         shipment.OrderId = dto.OrderId;
         shipment.ShipmentDate = dto.ShipmentDate;
@@ -68,6 +67,7 @@ public class ShipmentService : IShipmentService
         shipment.PaymentType = dto.PaymentType;
 
         await _shipments.SaveChangesAsync();
+
         return ToDto(shipment);
     }
 
@@ -77,8 +77,8 @@ public class ShipmentService : IShipmentService
 
         if (shipment is null) return null;
         _shipments.Delete(shipment);
-
         await _shipments.SaveChangesAsync();
+
         return true;
     }
 

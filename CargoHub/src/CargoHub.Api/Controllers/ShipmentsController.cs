@@ -7,23 +7,32 @@ namespace CargoHub.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ShipmentController : ControllerBase
+public class ShipmentsController : ControllerBase
 {
     private readonly IShipmentService _shipments;
 
-    public ShipmentController(IShipmentService shipments)
+    public ShipmentsController(IShipmentService shipments)
     {
         _shipments = shipments;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ShipmentItemDto>>> GetAll() => Ok(await _shipments.GetAllAsync());
+    public async Task<ActionResult<List<ShipmentDto>>> GetAll() => Ok(await _shipments.GetAllAsync());
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ShipmentDto>> GetById(int id)
     {
         var shipment = await _shipments.GetByIdAsync(id);
         return shipment is null ? NotFound() : Ok(shipment);
+    }
+
+    [HttpGet("{id:int}/orders")]
+    public async Task<ActionResult<List<int>>> GetOrderIds(int id)
+    {
+        var orderIds = await _shipments.GetOrderIdsInShipmentAsync(id);
+
+        if (orderIds.Count == 0) return NotFound();
+        return Ok(orderIds);
     }
 
     [HttpPost]
