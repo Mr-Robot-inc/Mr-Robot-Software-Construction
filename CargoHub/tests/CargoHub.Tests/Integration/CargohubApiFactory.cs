@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Npgsql.PostgresTypes;
 using Testcontainers.PostgreSql;
 
+namespace CargoHub.Tests.Integration;
+
 public class CargohubApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _db = new PostgreSqlBuilder()
