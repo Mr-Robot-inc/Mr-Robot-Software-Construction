@@ -3,7 +3,7 @@
 public class ShipmentItem : IEntity
 {
     public int Id { get; set; }
-    public int ShipmentId { get; set; }
-    public int ItemId { get; set; }
+    public int Shipment_Id { get; set; }
+    public int Item_Id { get; set; }
     public int Amount { get; set; }
 }
