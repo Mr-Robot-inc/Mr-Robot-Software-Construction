@@ -2,5 +2,5 @@ namespace CargoHub.Api.Models;
 
 public interface IEntity
 {
-    int Id { get; }
+    int Id { get; set;}
 }
