@@ -2,6 +2,8 @@
 using System.Net.Http.Json;
 using CargoHub.Api.Dtos;
 
+namespace CargoHub.Tests.Integration;
+
 public class ClientsApiTests : IClassFixture<CargohubApiFactory>
 {
     private readonly HttpClient _client;
