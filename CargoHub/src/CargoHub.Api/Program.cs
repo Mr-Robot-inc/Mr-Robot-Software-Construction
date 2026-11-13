@@ -16,12 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IClientService, ClientService>();
-<<<<<<< HEAD
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 builder.Services.AddScoped<ILocationsService, LocationsService>();
-=======
-builder.Services.AddScoped<IInventoryService, InventoryService>();
->>>>>>> main
 
 
 var app = builder.Build();

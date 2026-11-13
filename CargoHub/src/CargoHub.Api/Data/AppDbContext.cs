@@ -8,7 +8,6 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Client> Clients => Set<Client> ();
-<<<<<<< HEAD
     public DbSet<Warehouse> Warehouses => Set<Warehouse> ();
     public DbSet<Location> Locations => Set<Location> ();
 
@@ -26,7 +25,3 @@ public class AppDbContext : DbContext
 }
 
     
-=======
-    public DbSet<Item> Items => Set<Item> ();
-}
->>>>>>> main
