@@ -196,7 +196,40 @@ namespace CargoHub.Api.Migrations
                     b.ToTable("Shipments");
                 });
 
-            modelBuilder.Entity("CargoHub.Api.Models.ShipmentItem", b =>
+            modelBuilder.Entity("CargoHub.Api.Models.Transfer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("FromLocationId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ToLocationId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TransferStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transfers");
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.TransferItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -210,12 +243,12 @@ namespace CargoHub.Api.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ShipmentId")
+                    b.Property<int>("TransferId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShipmentItems");
+                    b.ToTable("TransferItems");
                 });
 #pragma warning restore 612, 618
         }
