@@ -78,6 +78,7 @@ public class WarehouseService : IWarehouseService
         return new WarehouseDto
         {
             Id = warehouse.Id,
+            Code = warehouse.Code,
             Name = warehouse.Name,
             Address = warehouse.Address,
             City = warehouse.City,
