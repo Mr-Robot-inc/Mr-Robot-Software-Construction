@@ -9,4 +9,19 @@ public class AppDbContext : DbContext
 
     public DbSet<Client> Clients => Set<Client> ();
     public DbSet<Warehouse> Warehouses => Set<Warehouse> ();
+    public DbSet<Location> Locations => Set<Location> ();
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Location>()
+            .HasOne(l => l.Warehouse)
+            .WithMany(w => w.Locations)
+            .HasForeignKey(l => l.WarehouseId)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
 }
+
+    

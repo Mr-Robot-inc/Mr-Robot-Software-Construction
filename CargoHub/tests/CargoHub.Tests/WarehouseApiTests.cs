@@ -13,12 +13,14 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
     }
 
     [Fact]
-    public async Task Create_ValidWarehouse_Returns201_AndCanBeRetrieved()
+    public async Task Create_ValidWarehouse_Returns201_AndDataMatches()
     {
         // Arrange
+        var code = $"WH{Guid.NewGuid():N}"[..8];
+
         var dto = new
         {
-            Code = "WH001",
+            Code = code,
             Name = "Main Warehouse",
             Address = "Nieuwe Haven 20",
             City = "Amsterdam",
@@ -32,14 +34,45 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
 
         // Act
         var post = await _client.PostAsJsonAsync("/api/warehouses", dto);
-        var created = await post.Content.ReadFromJsonAsync<WarehouseDto>();
 
-        var get = await _client.GetAsync(
-            $"/api/warehouses/{created!.Id}");
-
-        // Assert
+        // Assert creation response
         Assert.Equal(HttpStatusCode.Created, post.StatusCode);
+
+        var created = await post.Content.ReadFromJsonAsync<WarehouseDto>();
+        Assert.NotNull(created);
+
+        // Check that the created response matches the submitted data
+        Assert.Equal(dto.Code, created.Code);
+        Assert.Equal(dto.Name, created.Name);
+        Assert.Equal(dto.Address, created.Address);
+        Assert.Equal(dto.City, created.City);
+        Assert.Equal(dto.ZipCode, created.ZipCode);
+        Assert.Equal(dto.Province, created.Province);
+        Assert.Equal(dto.Country, created.Country);
+        Assert.Equal(dto.ContactName, created.ContactName);
+        Assert.Equal(dto.ContactPhone, created.ContactPhone);
+        Assert.Equal(dto.ContactEmail, created.ContactEmail);
+
+        // Retrieve the warehouse from the API
+        var get = await _client.GetAsync($"/api/warehouses/{created.Id}");
+
         Assert.Equal(HttpStatusCode.OK, get.StatusCode);
+
+        var retrieved = await get.Content.ReadFromJsonAsync<WarehouseDto>();
+        Assert.NotNull(retrieved);
+
+        // Check that the retrieved data is the same as the created data
+        Assert.Equal(created.Id, retrieved.Id);
+        Assert.Equal(dto.Code, retrieved.Code);
+        Assert.Equal(dto.Name, retrieved.Name);
+        Assert.Equal(dto.Address, retrieved.Address);
+        Assert.Equal(dto.City, retrieved.City);
+        Assert.Equal(dto.ZipCode, retrieved.ZipCode);
+        Assert.Equal(dto.Province, retrieved.Province);
+        Assert.Equal(dto.Country, retrieved.Country);
+        Assert.Equal(dto.ContactName, retrieved.ContactName);
+        Assert.Equal(dto.ContactPhone, retrieved.ContactPhone);
+        Assert.Equal(dto.ContactEmail, retrieved.ContactEmail);
     }
 
     [Fact]
@@ -53,12 +86,14 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
     }
 
     [Fact]
-    public async Task Update_ValidWarehouse_Returns200_AndDatabaseIsUpdated()
+    public async Task Update_ValidWarehouse_Returns200_AndDataMatches()
     {
-        // Arrange - First create a warehouse
+        // Arrange: create a warehouse first
+        var code = $"WH{Guid.NewGuid():N}"[..8];
+
         var createDto = new
         {
-            Code = "WH002",
+            Code = code,
             Name = "Old Warehouse",
             Address = "Old Street 10",
             City = "Rotterdam",
@@ -70,15 +105,17 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
             ContactEmail = "john@example.com"
         };
 
-        var post = await _client.PostAsJsonAsync(
-            "/api/warehouses", createDto);
+        var post = await _client.PostAsJsonAsync("/api/warehouses", createDto);
+
+        Assert.Equal(HttpStatusCode.Created, post.StatusCode);
 
         var created = await post.Content.ReadFromJsonAsync<WarehouseDto>();
+        Assert.NotNull(created);
 
-        // Updated warehouse information
+        // New information
         var updateDto = new
         {
-            Code = "WH002",
+            Code = code,
             Name = "Updated Warehouse",
             Address = "Nieuwe Haven 20",
             City = "Amsterdam",
@@ -90,34 +127,33 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
             ContactEmail = "frank@example.com"
         };
 
-        // Act - Update the warehouse
+        // Act: update the warehouse
         var put = await _client.PutAsJsonAsync(
-            $"/api/warehouses/{created!.Id}", updateDto);
+            $"/api/warehouses/{created.Id}", updateDto);
 
-        // Assert - Check PUT status code
         Assert.Equal(HttpStatusCode.OK, put.StatusCode);
 
-        // Act - Retrieve warehouse again using GET
+        // Retrieve the updated warehouse
         var get = await _client.GetAsync(
             $"/api/warehouses/{created.Id}");
 
-        var warehouse = await get.Content.ReadFromJsonAsync<WarehouseDto>();
-
-        // Assert - Check GET status code
         Assert.Equal(HttpStatusCode.OK, get.StatusCode);
 
-        // Assert - Check that database contains updated information
+        var warehouse = await get.Content.ReadFromJsonAsync<WarehouseDto>();
         Assert.NotNull(warehouse);
-        Assert.Equal("WH002", warehouse.Code);
-        Assert.Equal("Updated Warehouse", warehouse.Name);
-        Assert.Equal("Nieuwe Haven 20", warehouse.Address);
-        Assert.Equal("Amsterdam", warehouse.City);
-        Assert.Equal("1011AA", warehouse.ZipCode);
-        Assert.Equal("Noord-Holland", warehouse.Province);
-        Assert.Equal("Netherlands", warehouse.Country);
-        Assert.Equal("Frank Herbert", warehouse.ContactName);
-        Assert.Equal("123412321", warehouse.ContactPhone);
-        Assert.Equal("frank@example.com", warehouse.ContactEmail);
+
+        // Assert: compare retrieved data with the update data
+        Assert.Equal(created.Id, warehouse.Id);
+        Assert.Equal(updateDto.Code, warehouse.Code);
+        Assert.Equal(updateDto.Name, warehouse.Name);
+        Assert.Equal(updateDto.Address, warehouse.Address);
+        Assert.Equal(updateDto.City, warehouse.City);
+        Assert.Equal(updateDto.ZipCode, warehouse.ZipCode);
+        Assert.Equal(updateDto.Province, warehouse.Province);
+        Assert.Equal(updateDto.Country, warehouse.Country);
+        Assert.Equal(updateDto.ContactName, warehouse.ContactName);
+        Assert.Equal(updateDto.ContactPhone, warehouse.ContactPhone);
+        Assert.Equal(updateDto.ContactEmail, warehouse.ContactEmail);
     }
 
     [Fact]
@@ -139,8 +175,7 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
         };
 
         // Act
-        var put = await _client.PutAsJsonAsync(
-            "/api/warehouses/99999", dto);
+        var put = await _client.PutAsJsonAsync("/api/warehouses/99999", dto);
 
         // Assert
         Assert.Equal(HttpStatusCode.NotFound, put.StatusCode);
@@ -149,10 +184,12 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
     [Fact]
     public async Task Delete_ExistingWarehouse_Returns200_AndGetReturns404()
     {
-        // Arrange - Create warehouse
+        // Arrange
+        var code = $"WH{Guid.NewGuid():N}"[..8];
+
         var dto = new
         {
-            Code = "WH003",
+            Code = code,
             Name = "Warehouse To Delete",
             Address = "Delete Street 1",
             City = "Utrecht",
@@ -165,20 +202,22 @@ public class WarehousesApiTests : IClassFixture<CargohubApiFactory>
         };
 
         var post = await _client.PostAsJsonAsync("/api/warehouses", dto);
+
+        Assert.Equal(HttpStatusCode.Created, post.StatusCode);
+
         var created = await post.Content.ReadFromJsonAsync<WarehouseDto>();
+        Assert.NotNull(created);
 
-        // Act - Delete warehouse
+        // Act
         var delete = await _client.DeleteAsync(
-            $"/api/warehouses/{created!.Id}");
+            $"/api/warehouses/{created.Id}");
 
-        // Assert - Check DELETE status
+        // Assert
         Assert.Equal(HttpStatusCode.OK, delete.StatusCode);
 
-        // Act - Try retrieving deleted warehouse
         var get = await _client.GetAsync(
             $"/api/warehouses/{created.Id}");
 
-        // Assert - Warehouse should no longer exist
         Assert.Equal(HttpStatusCode.NotFound, get.StatusCode);
     }
 }
