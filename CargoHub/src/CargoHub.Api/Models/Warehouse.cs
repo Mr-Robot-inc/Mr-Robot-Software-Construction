@@ -14,7 +14,4 @@ public class Warehouse : IEntity
     public string ContactEmail { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-
-    // Navigation property for the related locations
-    public ICollection<Location> Locations { get; set; } = new List<Location>();
 }

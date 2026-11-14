@@ -3,9 +3,6 @@
 ### Alles ophalen
 GET {{baseUrl}}/api/clients
 
-### Alles ophalen
-GET {{baseUrl}}/api/warehouses
-
 ### Eén ophalen
 GET {{baseUrl}}/api/clients/1
 
@@ -14,7 +11,7 @@ POST {{baseUrl}}/api/clients
 Content-Type: application/json
 
 {
-  "name": "Frank Herbert","
+  "name": "Frank Herbert",
   "address": "Frank Herbert",
   "city": "Frank Herbert",
   "zipCode": "Frank Herbert",
