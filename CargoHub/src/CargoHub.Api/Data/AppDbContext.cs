@@ -9,4 +9,5 @@ public class AppDbContext : DbContext
 
     public DbSet<Client> Clients => Set<Client> ();
     public DbSet<Item> Items => Set<Item> ();
+    public DbSet<Supplier> Suppliers => Set<Supplier>();
 }
