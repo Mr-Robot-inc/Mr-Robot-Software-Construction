@@ -30,6 +30,9 @@ public class InventoriesController : ControllerBase
     public async Task<ActionResult<InventoryDto>> Create(CreateInventoryDto dto)
     {
         var created = await _inventories.CreateAsync(dto);
+        if (created == null)
+            return BadRequest("Item or location does not exist.");
+            
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 

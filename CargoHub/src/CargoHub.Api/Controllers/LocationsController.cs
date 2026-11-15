@@ -77,9 +77,9 @@ public class LocationsController : ControllerBase
     {
         var result = await _locationService.DeleteAsync(id);
 
-        if (result is null)
+        if (result is false)
             return NotFound();
 
-        return Ok(result);
+        return NoContent();
     }
 }
