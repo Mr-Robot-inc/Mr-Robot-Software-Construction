@@ -4,7 +4,9 @@ public class Inventory : IEntity
 {
 	public int Id { get; set; }
 	public int ItemId { get; set; }
+	public Item? Item { get; set; }
 	public int LocationId { get; set; }
+	public Location? Location { get; set; }
 	public int QuantityOnHand { get; set; }
 	public int QuantityOrdered { get; set; }
 	public int QuantityAllocated { get; set; }

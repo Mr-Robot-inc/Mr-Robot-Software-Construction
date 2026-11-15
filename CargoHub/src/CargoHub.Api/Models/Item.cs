@@ -19,4 +19,5 @@ public class Item : IEntity
     public string SupplierSku { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    public List<Inventory> Inventories { get; set; } = new();
 }
