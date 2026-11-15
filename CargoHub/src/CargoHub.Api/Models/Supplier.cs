@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace CargoHub.Api.Models;
 public class Supplier : IEntity
 {
@@ -10,7 +12,9 @@ public class Supplier : IEntity
 	public string Province { get; set; }
 	public string Country { get; set; }
 	public string ContactName { get; set; }
-	public string ContactPhone { get; set; }
+
+    [JsonPropertyName("phone_number")]
+    public string ContactPhone { get; set; }
 	public string Reference { get; set; }
 	public DateTime CreatedAt { get; set; }
 	public DateTime UpdatedAt { get; set; }

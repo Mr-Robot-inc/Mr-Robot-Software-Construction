@@ -25,13 +25,21 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 
-
+var enableJsonImport =
+    builder.Configuration.GetValue<bool>("EnableJsonImport");
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
+
+    if (enableJsonImport)
+    {
+        await DataInporter.RunImportAsync(
+            db,
+            app.Environment.ContentRootPath);
+    }
 }
 
 // Configure the HTTP request pipeline.
