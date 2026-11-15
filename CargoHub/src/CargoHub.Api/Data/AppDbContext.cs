@@ -19,6 +19,7 @@ public class AppDbContext : DbContext
     }
     
     public DbSet<Item> Items => Set<Item>();
+    public DbSet<Inventory> Inventories => Set<Inventory>();
     public DbSet<Shipment> Shipments => Set<Shipment>();
     public DbSet<Transfer> Transfers => Set<Transfer>();
     public DbSet<TransferItem> TransferItems => Set<TransferItem>();
