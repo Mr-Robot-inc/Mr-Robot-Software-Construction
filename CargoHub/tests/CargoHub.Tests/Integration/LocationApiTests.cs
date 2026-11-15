@@ -48,7 +48,7 @@ public class SupplierService : ISupplierService
             UpdatedAt = DateTime.UtcNow
         };
 
-        await _supplierRepository.Add(supplier);
+        _supplierRepository.Add(supplier);
         await _supplierRepository.SaveChangesAsync();
 
         return ToDto(supplier);
