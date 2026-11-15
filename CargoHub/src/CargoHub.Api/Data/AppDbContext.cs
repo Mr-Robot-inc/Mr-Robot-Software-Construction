@@ -23,4 +23,5 @@ public class AppDbContext : DbContext
     public DbSet<Shipment> Shipments => Set<Shipment>();
     public DbSet<Transfer> Transfers => Set<Transfer>();
     public DbSet<TransferItem> TransferItems => Set<TransferItem>();
+    public DbSet<Location> Locations => Set<Location>();
 }
