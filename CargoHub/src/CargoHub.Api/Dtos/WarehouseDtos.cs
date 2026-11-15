@@ -1,6 +1,6 @@
 namespace CargoHub.Api.Dtos;
 
-public record WarehouseDto 
+public record WarehouseDto
 {
     public int Id { get; set; }
     public string Code { get; set; }
@@ -16,7 +16,7 @@ public record WarehouseDto
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 }
-public record CreateWarehouseDto 
+public record CreateWarehouseDto
 {
     public string Code { get; set; }
     public string Name { get; set; }
@@ -29,7 +29,7 @@ public record CreateWarehouseDto
     public string ContactPhone { get; set; }
     public string ContactEmail { get; set; }
 }
-public record UpdatedWarehouseDto 
+public record UpdatedWarehouseDto
 {
     public string Code { get; set; }
     public string Name { get; set; }

@@ -17,7 +17,8 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
     public async Task Create_ValidClient_Returns201_AndCanBeRetrieved()
     {
         // Arrange
-        var dto = new {
+        var dto = new
+        {
             Name = "Dune",
             Address = "Frank Herbert",
             City = "Frank Herbert",
@@ -50,7 +51,8 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
     public async Task Create_InvalidClient_Returns400()
     {
         // Arrange
-        var dto = new {
+        var dto = new
+        {
             Address = "Frank Herbert",
             City = "Frank Herbert",
             ZipCode = "Frank Herbert",
@@ -69,7 +71,8 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
     [Fact]
     public async Task Update_Unknown_Id_Returns404()
     {
-        var dto = new {
+        var dto = new
+        {
             Name = "Dune",
             Address = "Frank Herbert",
             City = "Frank Herbert",

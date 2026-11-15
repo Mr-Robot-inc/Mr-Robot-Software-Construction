@@ -116,22 +116,22 @@ public class ItemService : IItemService
 
     private static ItemDto ToDto(Item item) => new()
     {
-            Code = item.Code,
-            Description = item.Description,
-            BarCode = item.BarCode,
-            ModeNumber = item.ModeNumber,
-            CommodityCode = item.CommodityCode,
-            UnitWeight = item.UnitWeight,
-            ItemLineId = item.ItemLineId,
-            ItemGroupId = item.ItemGroupId,
-            ItemTypeId = item.ItemTypeId,
-            MinPurchaseQty = item.MinPurchaseQty,
-            CaseSize = item.CaseSize,
-            PackagingType = item.PackagingType,
-            OrderMultiple = item.OrderMultiple,
-            SupplierId = item.SupplierId,
-            SupplierSku = item.SupplierSku,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+        Code = item.Code,
+        Description = item.Description,
+        BarCode = item.BarCode,
+        ModeNumber = item.ModeNumber,
+        CommodityCode = item.CommodityCode,
+        UnitWeight = item.UnitWeight,
+        ItemLineId = item.ItemLineId,
+        ItemGroupId = item.ItemGroupId,
+        ItemTypeId = item.ItemTypeId,
+        MinPurchaseQty = item.MinPurchaseQty,
+        CaseSize = item.CaseSize,
+        PackagingType = item.PackagingType,
+        OrderMultiple = item.OrderMultiple,
+        SupplierId = item.SupplierId,
+        SupplierSku = item.SupplierSku,
+        CreatedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow
     };
 }

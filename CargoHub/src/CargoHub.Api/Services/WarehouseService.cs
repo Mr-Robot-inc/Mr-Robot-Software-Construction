@@ -9,11 +9,11 @@ public class WarehouseService : IWarehouseService
 {
     private readonly IRepository<Warehouse> _warehouses;
 
-    public WarehouseService(IRepository<Warehouse> warehouses) 
+    public WarehouseService(IRepository<Warehouse> warehouses)
     {
-                _warehouses = warehouses;
+        _warehouses = warehouses;
     }
-    public async Task<List<WarehouseDto>> GetAllAsync() 
+    public async Task<List<WarehouseDto>> GetAllAsync()
     {
         var warehouses = await _warehouses.GetAllAsync();
         return warehouses.Select(ToDto).ToList();

@@ -20,7 +20,7 @@ public class SuppliersApiTests : IClassFixture<CargohubApiFactory>
         // Arrange
         var code = $"SUP{Guid.NewGuid():N}"[..8];
 
-        var dto = new
+        var dto = new 
         {
             Code = code,
             Name = "Main Supplier",

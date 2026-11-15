@@ -3,7 +3,7 @@ namespace CargoHub.Api.Dtos;
 public record ItemDto
 {
     public int Id { get; set; }
-    public string Code  {get; init; }
+    public string Code { get; init; }
     public string Description { get; init; }
     public string BarCode { get; init; }
     public string ModeNumber { get; init; }
@@ -25,7 +25,7 @@ public record ItemDto
 public record CreateItemDto
 {
     public int Id { get; set; }
-    public string Code  {get; init; }
+    public string Code { get; init; }
     public string Description { get; init; }
     public string BarCode { get; init; }
     public string ModeNumber { get; init; }
@@ -46,7 +46,7 @@ public record CreateItemDto
 
 public record UpdateItemDto
 {
-    public string Code  {get; init; }
+    public string Code { get; init; }
     public string Description { get; init; }
     public string BarCode { get; init; }
     public string ModeNumber { get; init; }

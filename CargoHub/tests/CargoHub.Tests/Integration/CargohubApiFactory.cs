@@ -37,4 +37,4 @@ public class CargohubApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
     }
 
     public new async Task DisposeAsync() => await _db.DisposeAsync();
-}   
+}
