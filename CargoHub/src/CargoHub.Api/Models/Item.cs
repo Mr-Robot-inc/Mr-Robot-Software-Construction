@@ -5,7 +5,7 @@ public class Item : IEntity
     public string Code  { get; set; }
     public string Description { get; set; }
     public string BarCode { get; set; }
-    public string ModelNumber { get; set; }
+    public string ModeNumber { get; set; }
     public int CommodityCode { get; set; }
     public float UnitWeight { get; set; }
     public int ItemLineId { get; set; }
