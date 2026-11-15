@@ -16,6 +16,18 @@ public class AppDbContext : DbContext
             .WithMany(w => w.Locations)
             .HasForeignKey(l => l.WarehouseId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Inventory>()
+            .HasOne(i => i.Item)
+            .WithMany(it => it.Inventories)
+            .HasForeignKey(i => i.ItemId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Inventory>()
+            .HasOne(i => i.Location)
+            .WithMany()
+            .HasForeignKey(i => i.LocationId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
     
     public DbSet<Item> Items => Set<Item>();
@@ -24,4 +36,6 @@ public class AppDbContext : DbContext
     public DbSet<Transfer> Transfers => Set<Transfer>();
     public DbSet<TransferItem> TransferItems => Set<TransferItem>();
     public DbSet<Location> Locations => Set<Location>();
+    public DbSet<Client> Clients => Set<Client>();
+    public DbSet<Warehouse> Warehouses => Set<Warehouse>();
 }

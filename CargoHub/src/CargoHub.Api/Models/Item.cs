@@ -2,7 +2,7 @@ namespace CargoHub.Api.Models;
 public class Item : IEntity
 {
     public int Id { get; set; }
-    public string Code  {get; set; }
+    public string Code  { get; set; }
     public string Description { get; set; }
     public string BarCode { get; set; }
     public string ModeNumber { get; set; }
@@ -19,4 +19,5 @@ public class Item : IEntity
     public string SupplierSku { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    public List<Inventory> Inventories { get; set; } = new();
 }
