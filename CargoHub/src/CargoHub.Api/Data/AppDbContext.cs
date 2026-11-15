@@ -7,11 +7,6 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<Client> Clients => Set<Client> ();
-    public DbSet<Warehouse> Warehouses => Set<Warehouse> ();
-    public DbSet<Location> Locations => Set<Location> ();
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -22,6 +17,9 @@ public class AppDbContext : DbContext
             .HasForeignKey(l => l.WarehouseId)
             .OnDelete(DeleteBehavior.Restrict);
     }
-}
-
     
+    public DbSet<Item> Items => Set<Item>();
+    public DbSet<Shipment> Shipments => Set<Shipment>();
+    public DbSet<Transfer> Transfers => Set<Transfer>();
+    public DbSet<TransferItem> TransferItems => Set<TransferItem>();
+}
