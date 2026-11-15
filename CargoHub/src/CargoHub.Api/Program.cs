@@ -21,6 +21,7 @@ builder.Services.AddScoped<ILocationsService, LocationsService>();
 builder.Services.AddScoped<IShipmentService, ShipmentService>();
 builder.Services.AddScoped<ITransferService, TransferService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IItemService, ItemService>();
 
 
 var app = builder.Build();
