@@ -26,14 +26,16 @@ public class ItemService : IItemService
         return item is null ? null : ToDto(item);
     }
 
-    public async Task<List<ItemDto?>> GetItemsByItemLineIdAsync(int id)
+    public async Task<List<ItemDto>> GetItemsByItemLineIdAsync(int id)
     {
-        return null;
+        var items = await _items.GetAllAsync();
+        return items.Where(i => i.ItemLineId == id).Select(ToDto).ToList();
     }
 
-    public async Task<List<ItemDto?>> GetItemsByItemGroupIdAsync(int id)
+    public async Task<List<ItemDto>> GetItemsByItemGroupIdAsync(int id)
     {
-        return null;
+        var items = await _items.GetAllAsync();
+        return items.Where(i => i.ItemGroupId == id).Select(ToDto).ToList();
     }
 
     public async Task<List<ItemDto>> GetItemsByItemTypeIdAsync(int id)

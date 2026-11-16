@@ -41,4 +41,5 @@ public class AppDbContext : DbContext
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();
     public DbSet<ItemType> ItemTypes => Set<ItemType>();
+    public DbSet<ItemLine> ItemLines => Set<ItemLine>();
 }
