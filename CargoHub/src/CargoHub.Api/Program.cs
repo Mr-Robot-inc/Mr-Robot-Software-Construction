@@ -25,6 +25,7 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IItemTypeService, ItemTypeService>();
 builder.Services.AddScoped<IItemLineService, ItemLineService>();
+builder.Services.AddScoped<IItemGroupService, ItemGroupService>();
 
 
 
