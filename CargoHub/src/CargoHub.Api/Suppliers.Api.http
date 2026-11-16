@@ -1,0 +1,81 @@
+
+@baseUrl = http://localhost:8080
+
+### Alles ophalen
+GET {{baseUrl}}/api/suppliers
+
+### Eén ophalen
+GET {{baseUrl}}/api/suppliers/1
+
+### Aanmaken
+POST {{baseUrl}}/api/suppliers
+Content-Type: application/json
+
+{
+  "code": "SUP001",
+  "name": "Frank Herbert",
+  "address": "Frank Herbert",
+  "city": "Amsterdam",
+  "zipCode": "1011AA",
+  "province": "Noord-Holland",
+  "country": "Netherlands",
+  "contactName": "Frank Herbert",
+  "contactPhone": "123412321",
+  "reference": "frank.herbert@example.com"
+}
+
+### Aanmaken without a field (name ontbreekt)
+POST {{baseUrl}}/api/suppliers
+Content-Type: application/json
+
+{
+  "code": "SUP002",
+  "address": "Frank Herbert",
+  "city": "Amsterdam",
+  "zipCode": "1011AA",
+  "province": "Noord-Holland",
+  "country": "Netherlands",
+  "contactName": "Frank Herbert",
+  "contactPhone": "123412321",
+  "reference": "frank.herbert@example.com"
+}
+
+### Bestaat niet -> verwacht 404
+PUT {{baseUrl}}/api/suppliers/999
+Content-Type: application/json
+
+{
+  "code": "SUP999",
+  "name": "Updated Supplier",
+  "address": "New Street 10",
+  "city": "Rotterdam",
+  "zipCode": "3011AA",
+  "province": "Zuid-Holland",
+  "country": "Netherlands",
+  "contactName": "Frank Herbert",
+  "contactPhone": "123412321",
+  "reference": "Cola"
+}
+
+### Delete
+DELETE {{baseUrl}}/api/suppliers/1
+
+### Bestaat niet -> verwacht 404
+GET {{baseUrl}}/api/suppliers/999
+
+### Updated
+PUT {{baseUrl}}/api/suppliers/2
+Content-Type: application/json
+
+{
+  "code": "SUP002",
+  "name": "Updated Supplier",
+  "address": "New Street 10",
+  "city": "Rotterdam",
+  "zipCode": "3011AA",
+  "province": "Zuid-Holland",
+  "country": "Netherlands",
+  "contactName": "Frank Herbert",
+  "contactPhone": "123412321",
+  "reference": "frank.dwadaadw@example.com"
+}

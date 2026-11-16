@@ -1,0 +1,55 @@
+
+@baseUrl = http://localhost:8080
+
+### Alles ophalen
+GET {{baseUrl}}/api/locations
+
+### Eén ophalen
+GET {{baseUrl}}/api/locations/1
+
+### Aanmaken
+POST {{baseUrl}}/api/locations
+Content-Type: application/json
+
+{
+  "warehouseId": 6,
+  "code": "LOC003",
+  "name": "Rotterdam Location"
+}
+
+### Aanmaken (warehouse id is less than 1)
+POST {{baseUrl}}/api/locations
+Content-Type: application/json
+
+
+{
+  "warehouseId": 0,
+  "code": "LOC003",
+  "name": "Rotterdam Location"
+}
+
+### Bestaat niet -> verwacht 404
+PUT {{baseUrl}}/api/locations/999
+Content-Type: application/json
+
+{
+  "warehouseId": "1",
+  "code": "LOC003",
+  "name": "Rotterdam Location"
+}
+
+### Delete
+DELETE {{baseUrl}}/api/locations/4
+
+### Bestaat niet -> verwacht 404
+DELETE {{baseUrl}}/api/locations/999
+
+### Updated
+PUT {{baseUrl}}/api/locations/1
+Content-Type: application/json
+
+{
+  "warehouseId": "1",
+  "code": "LOC003(updated)",
+  "name": "Rotterdam Location"
+}
