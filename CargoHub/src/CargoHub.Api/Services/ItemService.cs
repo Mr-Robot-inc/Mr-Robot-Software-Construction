@@ -36,9 +36,10 @@ public class ItemService : IItemService
         return null;
     }
 
-    public async Task<List<ItemDto?>> GetItemsByItemTypeIdAsync(int id)
+    public async Task<List<ItemDto>> GetItemsByItemTypeIdAsync(int id)
     {
-        return null;
+        var items = await _items.GetAllAsync();
+        return items.Where(i => i.ItemTypeId == id).Select(ToDto).ToList();
     }
 
     public async Task<List<ItemDto?>> GetItemsBySupplierIdAsync(int id)

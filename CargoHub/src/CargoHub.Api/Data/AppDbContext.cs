@@ -40,4 +40,5 @@ public class AppDbContext : DbContext
     public DbSet<Location> Locations => Set<Location>();
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();
+    public DbSet<ItemType> ItemTypes => Set<ItemType>();
 }
