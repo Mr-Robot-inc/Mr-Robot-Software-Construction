@@ -13,4 +13,6 @@ public class Shipment : IEntity
     public string PaymentType { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+
+    public List<ShipmentItem> ShipmentItem { get; set; } = new List<Location>();
 }
