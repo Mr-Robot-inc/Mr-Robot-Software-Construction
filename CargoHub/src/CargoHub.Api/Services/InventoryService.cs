@@ -7,10 +7,15 @@ namespace CargoHub.Api.Services;
 public class InventoryService : IInventoryService
 {
     private readonly IRepository<Inventory> _inventories;
+    private readonly IRepository<Item> _items;
+    private readonly IRepository<Location> _locations;
 
-    public InventoryService(IRepository<Inventory> inventories)
+    public InventoryService(IRepository<Inventory> inventories, IRepository<Item> items, IRepository<Location> locations)
     {
         _inventories = inventories;
+        _items = items;
+        _locations = locations;
+        
     }
 
     public async Task<List<InventoryDto>> GetAllAsync()
@@ -34,8 +39,13 @@ public class InventoryService : IInventoryService
         return null;
     }
 
-    public async Task<InventoryDto> CreateAsync(CreateInventoryDto dto)
+    public async Task<InventoryDto?> CreateAsync(CreateInventoryDto dto)
     {
+        var location = await _locations.GetByIdAsync(dto.LocationId);
+        var item = await _items.GetByIdAsync(dto.ItemId);
+
+        if (location == null || item == null) return null;
+
         var inventory = new Inventory
         {
             ItemId = dto.ItemId,
@@ -70,10 +80,10 @@ public class InventoryService : IInventoryService
         return ToDto(inventory);
     }
 
-    public async Task<bool?> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var inventory = await _inventories.GetByIdAsync(id);
-        if (inventory is null) return null;
+        if (inventory is null) return false;
 
         _inventories.Delete(inventory);
         await _inventories.SaveChangesAsync();

@@ -11,5 +11,5 @@ public interface IInventoryService
     
     Task<InventoryDto> CreateAsync(CreateInventoryDto dto);
     Task<InventoryDto?> UpdateAsync(int id, UpdateInventoryDto dto);
-    Task<bool?> DeleteAsync(int id);
+    Task<bool> DeleteAsync(int id);
 }
