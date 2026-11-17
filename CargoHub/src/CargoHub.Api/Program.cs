@@ -1,4 +1,5 @@
 using CargoHub.Api.Data;
+using CargoHub.Api.Models;
 using CargoHub.Api.Repositories;
 using CargoHub.Api.Services;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
@@ -24,6 +26,7 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 var app = builder.Build();
