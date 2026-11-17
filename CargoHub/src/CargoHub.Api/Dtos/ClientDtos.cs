@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace CargoHub.Api.Dtos;
 
 public record ClientDto
@@ -18,14 +20,25 @@ public record ClientDto
 
 public record CreateClientDto
 {
+    [Required]
     public string Name { get; init; }
+    [Required]
     public string Address { get; init; }
+    [Required]
     public string City { get; init; }
+    [Required]
     public string ZipCode { get; init; }
+    [Required]
     public string Province { get; init; }
+    [Required]
     public string Country { get; init; }
+    [Required]
     public string ContactName { get; init; }
+    [Phone]
+    [Required]
     public string ContactPhone { get; init; }
+    [Required]
+    [EmailAddress]
     public string ContactEmail { get; init; }
     public DateTime CreatedAt { get; init; }
     public DateTime UpdatedAt { get; init; }
@@ -33,14 +46,25 @@ public record CreateClientDto
 
 public record UpdateClientDto
 {
+    [Required]
     public string Name { get; init; }
+    [Required]
     public string Address { get; init; }
+    [Required]
     public string City { get; init; }
+    [Required]
     public string ZipCode { get; init; }
+    [Required]
     public string Province { get; init; }
+    [Required]
     public string Country { get; init; }
+    [Required]
     public string ContactName { get; init; }
+    [Required]
+    [Phone]
     public string ContactPhone { get; init; }
+    [Required]
+    [EmailAddress]
     public string ContactEmail { get; init; }
     public DateTime CreatedAt { get; init; }
     public DateTime UpdatedAt { get; init; }

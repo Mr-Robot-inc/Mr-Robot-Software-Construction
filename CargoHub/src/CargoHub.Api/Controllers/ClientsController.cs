@@ -41,9 +41,9 @@ public class ClientsController : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<ActionResult<bool>> Delete(int id)
+    public async Task<ActionResult> Delete(int id)
     {
         var deleted = await _clients.DeleteAsync(id);
-        return deleted is false ? NotFound() : Ok(deleted);
+        return deleted is false ? NotFound() : NoContent();
     }
 }
