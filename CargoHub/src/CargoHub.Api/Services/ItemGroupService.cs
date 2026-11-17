@@ -61,7 +61,7 @@ public class ItemGroupService : IItemGroupService
     public async Task<bool?> DeleteAsync(int id)
     {
         var itemGroup = await _itemGroups.GetByIdAsync(id);
-        if (itemGroup is null) return null;
+        if (itemGroup is null) return false;
 
         _itemGroups.Delete(itemGroup);
         await _itemGroups.SaveChangesAsync();

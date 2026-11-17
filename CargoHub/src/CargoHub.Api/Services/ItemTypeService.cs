@@ -59,7 +59,7 @@ public class ItemTypeService : IItemTypeService
     public async Task<bool?> DeleteAsync(int id)
     {
         var itemType = await _itemTypes.GetByIdAsync(id);
-        if (itemType is null) return null;
+        if (itemType is null) return false;
 
         _itemTypes.Delete(itemType);
         await _itemTypes.SaveChangesAsync();

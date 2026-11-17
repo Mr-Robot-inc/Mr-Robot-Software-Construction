@@ -59,7 +59,7 @@ public class ItemLineService : IItemLineService
     public async Task<bool?> DeleteAsync(int id)
     {
         var itemLine = await _itemLine.GetByIdAsync(id);
-        if (itemLine is null) return null;
+        if (itemLine is null) return false;
 
         _itemLine.Delete(itemLine);
         await _itemLine.SaveChangesAsync();
