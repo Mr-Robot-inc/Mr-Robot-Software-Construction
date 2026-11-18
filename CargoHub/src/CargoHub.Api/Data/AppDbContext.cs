@@ -30,6 +30,18 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(i => i.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
+        //ShipmentItem relationships
+        modelBuilder.Entity<ShipmentItem>()
+            .HasOne(si => si.Shipment)
+            .WithMany(s => s.ShipmentItems)
+            .HasForeignKey(si => si.ShipmentId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ShipmentItem>()
+            .HasOne(si => si.Item)
+            .WithMany(i => i.ShipmentItems)
+            .HasForeignKey(si => si.ItemId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
     
     public DbSet<Item> Items => Set<Item>();
@@ -42,4 +54,5 @@ public class AppDbContext : DbContext
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+    public DbSet<ShipmentItem> ShipmentItems => Set<ShipmentItem>();
 }

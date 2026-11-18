@@ -4,6 +4,9 @@
 ### Alles ophalen
 GET {{baseUrl}}/api/suppliers
 
+### Alles ophalen
+GET {{baseUrl}}/api/items
+
 ### Eén ophalen
 GET {{baseUrl}}/api/suppliers/1
 

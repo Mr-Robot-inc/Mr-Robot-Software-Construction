@@ -21,4 +21,6 @@ public class Item : IEntity
     public DateTime UpdatedAt { get; set; }
     public List<Inventory> Inventories { get; set; } = new();
 
+
+    public ICollection<ShipmentItem> ShipmentItems { get; set; } = new List<ShipmentItem>();
 }
