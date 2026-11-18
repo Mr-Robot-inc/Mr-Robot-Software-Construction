@@ -17,4 +17,5 @@ public class Warehouse : IEntity
 
     // Navigation property for the related locations
     public ICollection<Location> Locations { get; set; } = new List<Location>();
+    public ICollection<ShipmentItem> ShipmentItems { get; set; } = new List<ShipmentItem>();
 }
