@@ -8,4 +8,7 @@ public class ItemGroup : IEntity
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public string ItemGroupcol { get; set; }
+
+    // used for foreign keys
+    public ICollection<Item> Items { get; set; } = new List<Item>();
 }

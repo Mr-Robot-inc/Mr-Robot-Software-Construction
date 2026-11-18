@@ -30,6 +30,27 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(i => i.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Item>()
+            .HasOne(i => i.ItemGroup)                  
+            .WithMany(g => g.Items)                    
+            .HasForeignKey(i => i.ItemGroupId)         
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Item>()
+            .HasOne(i => i.ItemLine)                  
+            .WithMany(l => l.Items)                    
+            .HasForeignKey(i => i.ItemLineId)         
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Item>()
+            .HasOne(i => i.ItemType)                  
+            .WithMany(t => t.Items)                    
+            .HasForeignKey(i => i.ItemTypeId)         
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+
     }
     
     public DbSet<Item> Items => Set<Item>();
