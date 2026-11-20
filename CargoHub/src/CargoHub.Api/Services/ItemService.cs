@@ -119,6 +119,7 @@ public class ItemService : IItemService
 
     private static ItemDto ToDto(Item item) => new()
     {
+            Id = item.Id,
             Code = item.Code,
             Description = item.Description,
             BarCode = item.BarCode,
@@ -134,7 +135,7 @@ public class ItemService : IItemService
             OrderMultiple = item.OrderMultiple,
             SupplierId = item.SupplierId,
             SupplierSku = item.SupplierSku,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+            CreatedAt = item.CreatedAt,
+            UpdatedAt = item.UpdatedAt
     };
 }
