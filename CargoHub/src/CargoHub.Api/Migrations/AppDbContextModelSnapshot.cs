@@ -74,7 +74,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Inventory", b =>
@@ -112,7 +112,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Inventories");
+                    b.ToTable("Inventories", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Item", b =>
@@ -188,7 +188,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasIndex("ItemTypeId");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemGroup", b =>
@@ -218,7 +218,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemGroups");
+                    b.ToTable("ItemGroups", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemLine", b =>
@@ -244,7 +244,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemLines");
+                    b.ToTable("ItemLines", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemType", b =>
@@ -270,7 +270,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemTypes");
+                    b.ToTable("ItemTypes", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Location", b =>
@@ -302,81 +302,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("CargoHub.Api.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BillToClientId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CustomerPoNumber")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("OrderStatus")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Reference")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("ShipToClientId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ShippingNotes")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("WarehouseId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("CargoHub.Api.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderItems");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Shipment", b =>
@@ -425,7 +351,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shipments");
+                    b.ToTable("Shipments", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Supplier", b =>
@@ -484,7 +410,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Suppliers", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Transfer", b =>
@@ -517,7 +443,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transfers");
+                    b.ToTable("Transfers", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.TransferItem", b =>
@@ -539,7 +465,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TransferItems");
+                    b.ToTable("TransferItems", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Warehouse", b =>
@@ -598,7 +524,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouses");
+                    b.ToTable("Warehouses", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Inventory", b =>
