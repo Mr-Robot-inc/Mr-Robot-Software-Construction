@@ -37,16 +37,12 @@ public class TransferService : ITransferService
 
     public async Task<TransferDto> CreateAsync(CreateTransferDto dto)
     {
-        var date = DateTime.UtcNow;
-
         var transfer = new Transfer
         {
             Reference = dto.Reference,
             ToLocationId = dto.ToLocationId,
             FromLocationId = dto.FromLocationId,
             TransferStatus = "Scheduled",
-            CreatedAt = date,
-            UpdatedAt = date
         };
 
         _transfers.Add(transfer);
@@ -64,7 +60,6 @@ public class TransferService : ITransferService
         transfer.ToLocationId = dto.ToLocationId;
         transfer.FromLocationId = dto.FromLocationId;
         transfer.TransferStatus = dto.TransferStatus;
-        transfer.UpdatedAt = DateTime.UtcNow;
 
         await _transfers.SaveChangesAsync();
 

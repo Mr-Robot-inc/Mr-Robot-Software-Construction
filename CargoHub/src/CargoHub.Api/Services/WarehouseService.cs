@@ -37,8 +37,6 @@ public class WarehouseService : IWarehouseService
             ContactName = dto.ContactName,
             ContactPhone = dto.ContactPhone,
             ContactEmail = dto.ContactEmail,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
         _warehouses.Add(warehouse);
         await _warehouses.SaveChangesAsync();
@@ -59,7 +57,6 @@ public class WarehouseService : IWarehouseService
         warehouse.ContactName = dto.ContactName;
         warehouse.ContactPhone = dto.ContactPhone;
         warehouse.ContactEmail = dto.ContactEmail;
-        warehouse.UpdatedAt = DateTime.UtcNow;
 
         _warehouses.Update(warehouse);
         await _warehouses.SaveChangesAsync();

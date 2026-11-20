@@ -31,8 +31,6 @@ public class ItemGroupService : IItemGroupService
         {
             Name = dto.Name,
             Description = dto.Description,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
             ItemGroupcol = dto.ItemGroupcol
         };
 

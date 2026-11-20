@@ -52,8 +52,6 @@ public class LocationsService : ILocationsService
 			WarehouseId = dto.WarehouseId,
 			Code = dto.Code,
 			Name = dto.Name,
-			CreatedAt = DateTime.UtcNow,
-			UpdatedAt = DateTime.UtcNow
 		};
 
 		_locations.Add(location);
@@ -88,7 +86,6 @@ public class LocationsService : ILocationsService
 		location.WarehouseId = dto.WarehouseId;
 		location.Code = dto.Code;
 		location.Name = dto.Name;
-		location.UpdatedAt = DateTime.UtcNow;
 
 		await _locations.SaveChangesAsync();
 

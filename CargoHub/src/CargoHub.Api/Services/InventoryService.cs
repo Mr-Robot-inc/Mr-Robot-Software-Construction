@@ -53,8 +53,6 @@ public class InventoryService : IInventoryService
             QuantityOnHand = dto.QuantityOnHand,
             QuantityOrdered = dto.QuantityOrdered,
             QuantityAllocated = dto.QuantityAllocated,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
 
         _inventories.Add(inventory);
@@ -73,7 +71,6 @@ public class InventoryService : IInventoryService
         inventory.QuantityOnHand = dto.QuantityOnHand;
         inventory.QuantityOrdered = dto.QuantityOrdered;
         inventory.QuantityAllocated = dto.QuantityAllocated;
-        inventory.UpdatedAt = DateTime.UtcNow;
 
         await _inventories.SaveChangesAsync();
 
