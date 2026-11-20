@@ -23,6 +23,10 @@ public class InventoriesApiTests : IClassFixture<CargohubApiFactory>
         using var scope = _factory.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
+        var itemGroup = new ItemGroup { Name = "Tools", Description = "Hand tools", ItemGroupcol = "p-231"};
+        var itemLine = new ItemLine { Name = "itemLine123", Description = "ItemLineDescr" };
+        var itemType = new ItemType { Name = "ItemTyoe123", Description = "Itemtypedesc" };
+
         var item = new Item 
         {
             Code = "P01",
@@ -37,9 +41,9 @@ public class InventoriesApiTests : IClassFixture<CargohubApiFactory>
             OrderMultiple = 1,
             SupplierSku = "SUP-01",
             SupplierId = 1,
-            ItemGroupId = 1,
-            ItemLineId = 1,
-            ItemTypeId = 1
+            ItemGroup = itemGroup,
+            ItemLine = itemLine,
+            ItemType = itemType
         };
         var warehouse = new Warehouse
         {
