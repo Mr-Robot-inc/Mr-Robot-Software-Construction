@@ -20,4 +20,9 @@ public class Item : IEntity
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public List<Inventory> Inventories { get; set; } = new();
+
+    // used for foreign keys
+    public ItemGroup ItemGroup { get; set; }
+    public ItemType ItemType { get; set; }
+    public ItemLine ItemLine { get; set; }
 }

@@ -30,6 +30,27 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(i => i.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Item>()
+            .HasOne(i => i.ItemGroup)                  
+            .WithMany(g => g.Items)                    
+            .HasForeignKey(i => i.ItemGroupId)         
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Item>()
+            .HasOne(i => i.ItemLine)                  
+            .WithMany(l => l.Items)                    
+            .HasForeignKey(i => i.ItemLineId)         
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Item>()
+            .HasOne(i => i.ItemType)                  
+            .WithMany(t => t.Items)                    
+            .HasForeignKey(i => i.ItemTypeId)         
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+
     }
     
     public DbSet<Item> Items => Set<Item>();
@@ -40,6 +61,11 @@ public class AppDbContext : DbContext
     public DbSet<Location> Locations => Set<Location>();
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();
+
+
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+    public DbSet<ItemType> ItemTypes => Set<ItemType>();
+    public DbSet<ItemLine> ItemLines => Set<ItemLine>();
+    public DbSet<ItemGroup> ItemGroups => Set<ItemGroup>();
 }
