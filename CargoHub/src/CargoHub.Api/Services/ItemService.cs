@@ -8,10 +8,17 @@ namespace CargoHub.Api.Services;
 public class ItemService : IItemService
 {
     private readonly IRepository<Item> _items;
+    private readonly IRepository<ItemGroup> _itemGroups;
+    private readonly IRepository<ItemLine> _itemLines;
+    private readonly IRepository<ItemType> _itemTypes;
 
-    public ItemService(IRepository<Item> items)
+
+    public ItemService(IRepository<Item> items, IRepository<ItemGroup> itemGroups, IRepository<ItemLine> itemLines, IRepository<ItemType> itemTypes)
     {
         _items = items;
+        _itemGroups = itemGroups;
+        _itemLines = itemLines;
+        _itemTypes = itemTypes;
     }
 
     public async Task<List<ItemDto>> GetAllAsync()
@@ -44,13 +51,22 @@ public class ItemService : IItemService
         return items.Where(i => i.ItemTypeId == id).Select(ToDto).ToList();
     }
 
-    public async Task<List<ItemDto?>> GetItemsBySupplierIdAsync(int id)
+    public async Task<List<ItemDto>> GetItemsBySupplierIdAsync(int id)
     {
-        return null;
+        var items = await _items.GetAllAsync();
+        return items.Where(i => i.SupplierId == id).Select(ToDto).ToList();
     }
 
-    public async Task<ItemDto> CreateAsync(CreateItemDto dto)
+    public async Task<ItemDto?> CreateAsync(CreateItemDto dto)
     {
+        var itemGroup = await _itemGroups.GetByIdAsync(dto.ItemGroupId);
+        var itemLine = await _itemLines.GetByIdAsync(dto.ItemLineId);
+        var itemType = await _itemTypes.GetByIdAsync(dto.ItemTypeId);
+
+        if (itemGroup == null) return null;
+        if (itemLine == null) return null;
+        if (itemType == null) return null;
+
         var item = new Item
         {
             Code = dto.Code,
@@ -83,6 +99,14 @@ public class ItemService : IItemService
         var item = await _items.GetByIdAsync(id);
         if (item is null) return null;
 
+        var itemGroup = await _itemGroups.GetByIdAsync(dto.ItemGroupId);
+        var itemLine = await _itemLines.GetByIdAsync(dto.ItemLineId);
+        var itemType = await _itemTypes.GetByIdAsync(dto.ItemTypeId);
+
+        if (itemGroup == null) return null;
+        if (itemLine == null) return null;
+        if (itemType == null) return null;
+
         item.Code = dto.Code;
         item.Description = dto.Description;
         item.BarCode = dto.BarCode;
@@ -105,15 +129,15 @@ public class ItemService : IItemService
         return ToDto(item);
     }
 
-    public async Task<bool?> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var item = await _items.GetByIdAsync(id);
-        if (item is null) return null;
+        if (item is null) return true;
 
         _items.Delete(item);
         await _items.SaveChangesAsync();
 
-        return true;
+        return false;
     }
 
 

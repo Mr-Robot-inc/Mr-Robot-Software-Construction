@@ -30,6 +30,11 @@ public class ItemsController : ControllerBase
     public async Task<ActionResult<ItemDto>> Create(CreateItemDto dto)
     {
         var created = await _items.CreateAsync(dto);
+        if(created == null)
+        {
+            return BadRequest("ItemGroup, ItemLine or ItemType does not exist.");
+        }
+
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
@@ -41,9 +46,9 @@ public class ItemsController : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<ActionResult<bool>> Delete(int id)
+    public async Task<ActionResult> Delete(int id)
     {
         var deleted = await _items.DeleteAsync(id);
-        return deleted is false ? NotFound() : Ok(deleted);
+        return deleted is false ? NotFound() : NoContent();
     }
 }
