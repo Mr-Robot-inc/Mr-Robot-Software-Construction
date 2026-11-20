@@ -1,7 +1,7 @@
+
 using CargoHub.Api.Dtos;
 using CargoHub.Api.Models;
 using CargoHub.Api.Repositories;
-using CargoHub.Api.Services;
 
 namespace CargoHub.Api.Services;
 
@@ -28,22 +28,22 @@ public class ItemService : IItemService
 
     public async Task<List<ItemDto?>> GetItemsByItemLineIdAsync(int id)
     {
-        return null;
+        return new List<ItemDto?>();
     }
 
     public async Task<List<ItemDto?>> GetItemsByItemGroupIdAsync(int id)
     {
-        return null;
+        return new List<ItemDto?>();
     }
 
     public async Task<List<ItemDto?>> GetItemsByItemTypeIdAsync(int id)
     {
-        return null;
+        return new List<ItemDto?>();
     }
 
     public async Task<List<ItemDto?>> GetItemsBySupplierIdAsync(int id)
     {
-        return null;
+        return new List<ItemDto?>();
     }
 
     public async Task<ItemDto> CreateAsync(CreateItemDto dto)
@@ -78,7 +78,9 @@ public class ItemService : IItemService
     public async Task<ItemDto?> UpdateAsync(int id, UpdateItemDto dto)
     {
         var item = await _items.GetByIdAsync(id);
-        if (item is null) return null;
+
+        if (item is null)
+            return null;
 
         item.Code = dto.Code;
         item.Description = dto.Description;
@@ -105,7 +107,9 @@ public class ItemService : IItemService
     public async Task<bool?> DeleteAsync(int id)
     {
         var item = await _items.GetByIdAsync(id);
-        if (item is null) return null;
+
+        if (item is null)
+            return false;
 
         _items.Delete(item);
         await _items.SaveChangesAsync();
@@ -113,25 +117,25 @@ public class ItemService : IItemService
         return true;
     }
 
-
     private static ItemDto ToDto(Item item) => new()
     {
-            Code = item.Code,
-            Description = item.Description,
-            BarCode = item.BarCode,
-            ModeNumber = item.ModeNumber,
-            CommodityCode = item.CommodityCode,
-            UnitWeight = item.UnitWeight,
-            ItemLineId = item.ItemLineId,
-            ItemGroupId = item.ItemGroupId,
-            ItemTypeId = item.ItemTypeId,
-            MinPurchaseQty = item.MinPurchaseQty,
-            CaseSize = item.CaseSize,
-            PackagingType = item.PackagingType,
-            OrderMultiple = item.OrderMultiple,
-            SupplierId = item.SupplierId,
-            SupplierSku = item.SupplierSku,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+        Id = item.Id,
+        Code = item.Code,
+        Description = item.Description,
+        BarCode = item.BarCode,
+        ModeNumber = item.ModeNumber,
+        CommodityCode = item.CommodityCode,
+        UnitWeight = item.UnitWeight,
+        ItemLineId = item.ItemLineId,
+        ItemGroupId = item.ItemGroupId,
+        ItemTypeId = item.ItemTypeId,
+        MinPurchaseQty = item.MinPurchaseQty,
+        CaseSize = item.CaseSize,
+        PackagingType = item.PackagingType,
+        OrderMultiple = item.OrderMultiple,
+        SupplierId = item.SupplierId,
+        SupplierSku = item.SupplierSku,
+        CreatedAt = item.CreatedAt,
+        UpdatedAt = item.UpdatedAt
     };
 }

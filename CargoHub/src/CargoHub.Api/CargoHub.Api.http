@@ -1,80 +1,95 @@
+
 @baseUrl = http://localhost:8080
 
-### Alles ophalen
-GET {{baseUrl}}/api/clients
+### =====================================
+### SHIPMENTS
+### =====================================
 
-### Alles ophalen
-GET {{baseUrl}}/api/warehouses
+### Get all shipments
+GET {{baseUrl}}/api/shipments
 
-### Eén ophalen
-GET {{baseUrl}}/api/clients/1
+### Get shipment by ID
+GET {{baseUrl}}/api/shipments/1
 
-### Aanmaken
-POST {{baseUrl}}/api/clients
+
+### Create shipment
+POST {{baseUrl}}/api/shipments
 Content-Type: application/json
 
 {
-  "name": "Frank Herbert","
-  "address": "Frank Herbert",
-  "city": "Frank Herbert",
-  "zipCode": "Frank Herbert",
-  "province": "Frank Herbert",
-  "country": "Frank Herbert",
-  "contactName": "Frank Herbert",
-  "contactEmail": "Frank herbert",
-  "contactPhone": "123412321"
+  "reference": "SHIP-001",
+  "orderId": 1,
+  "shipmentDate": "2026-11-19T10:00:00Z",
+  "shipmentType": "Outbound",
+  "shipmentStatus": "Pending",
+  "carrierName": "DHL",
+  "shippingMethod": "Air",
+  "paymentType": "Prepaid"
 }
 
-### Aanmaken without a field
-POST {{baseUrl}}/api/clients
+
+### =====================================
+### ITEMS
+### =====================================
+
+### Get all items
+GET {{baseUrl}}/api/items
+
+### Get item by ID
+GET {{baseUrl}}/api/items/1
+
+### Create item
+POST {{baseUrl}}/api/items
 Content-Type: application/json
 
 {
-  "address": "Frank Herbert",
-  "city": "Frank Herbert",
-  "zipCode": "Frank Herbert",
-  "province": "Frank Herbert",
-  "country": "Frank Herbert",
-  "contactName": "Frank Herbert",
-  "contactEmail": "Frank herbert",
-  "contactPhone": "123412321"
+  "code": "ITEM-001",
+  "description": "Wireless Keyboard",
+  "barCode": "8712345678901",
+  "modeNumber": "KB-100",
+  "commodityCode": 1234,
+  "unitWeight": 0.5,
+  "itemLineId": 1,
+  "itemGroupId": 1,
+  "itemTypeId": 1,
+  "minPurchaseQty": 1,
+  "caseSize": 10,
+  "packagingType": "Box",
+  "orderMultiple": 1,
+  "supplierId": 1,
+  "supplierSku": "SUP-KB-001"
 }
 
-### Bestaat niet -> verwacht 404
-PUT {{baseUrl}}/api/clients/999
+
+### =====================================
+### SHIPMENT ITEMS
+### =====================================
+
+### Get all shipment items
+GET {{baseUrl}}/api/shipmentitems
+
+### Get shipment item by ID
+GET {{baseUrl}}/api/shipmentitems/1
+
+### Create shipment item
+POST {{baseUrl}}/api/shipmentitems
 Content-Type: application/json
 
 {
-  "name": "asd",
-  "address": "qwd Herbert",
-  "city": "qwe Herbert",
-  "zipCode": "dwq Herbert",
-  "province": "dwq Herbert",
-  "country": "qwe Herbert",
-  "contactName": "dwq Herbert",
-  "contactEmail": "e herbert",
-  "contactPhone": "123412321"
+  "shipmentId": 1,
+  "itemId": 4,
+  "amount": 25
 }
 
-### Delete
-DELETE {{baseUrl}}/api/clients/1
-
-### Bestaat niet → verwacht 404
-GET {{baseUrl}}/api/books/999
-
-
-### Updated
-PUT {{baseUrl}}/api/clients/2
+### Update shipment item
+PUT {{baseUrl}}/api/shipmentitems/1
 Content-Type: application/json
 
 {
-  "name": "asd",
-  "address": "qwd Herbert",
-  "city": "qwe Herbert",
-  "zipCode": "dwq Herbert",
-  "province": "dwq Herbert",
-  "country": "qwe Herbert",
-  "contactName": "dwq Herbert",
-  "contactEmail": "e herbert",
-  "contactPhone": "123412321"
+  "shipmentId": 1,
+  "itemId": 1,
+  "amount": 50
 }
+
+### Delete shipment item
+DELETE {{baseUrl}}/api/shipmentitems/1

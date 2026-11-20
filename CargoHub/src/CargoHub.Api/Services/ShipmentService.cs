@@ -34,6 +34,8 @@ public class ShipmentService : IShipmentService
 
     public async Task<ShipmentDto> CreateAsync(CreateShipmentDto dto)
     {
+        var date = DateTime.UtcNow;
+
         var shipment = new Shipment
         {
             Reference = dto.Reference,
@@ -43,7 +45,9 @@ public class ShipmentService : IShipmentService
             ShipmentStatus = dto.ShipmentStatus,
             CarrierName = dto.CarrierName,
             ShippingMethod = dto.ShippingMethod,
-            PaymentType = dto.PaymentType
+            PaymentType = dto.PaymentType,
+            CreatedAt = date,
+            UpdatedAt = date
         };
 
         _shipments.Add(shipment);

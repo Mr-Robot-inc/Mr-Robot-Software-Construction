@@ -27,6 +27,7 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IShipmentItemService, ShipmentItemService>();
 
 
 var app = builder.Build();

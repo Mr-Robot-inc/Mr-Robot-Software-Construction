@@ -38,3 +38,15 @@ public record UpdateShipmentDto
     public string ShippingMethod { get; init; }
     public string PaymentType { get; init; }
 }
+public record ShipmentShipmentItemDto 
+{
+    public int Id { get; init; }
+    public string Reference { get; init; }
+    public int? OrderId { get; init; }
+    public DateTime ShipmentDate { get; init; }
+    public string ShipmentType { get; init; }
+    public string ShipmentStatus { get; init; }
+    public string CarrierName { get; init; }
+    public string ShippingMethod { get; init; }
+    public string PaymentType { get; init; }
+}
