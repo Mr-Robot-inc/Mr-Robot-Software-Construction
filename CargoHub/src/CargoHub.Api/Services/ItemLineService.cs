@@ -31,8 +31,6 @@ public class ItemLineService : IItemLineService
         {
             Name = dto.Name,
             Description = dto.Description,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
 
         _itemLine.Add(itemLine);
@@ -48,7 +46,6 @@ public class ItemLineService : IItemLineService
 
         itemLine.Name = dto.Name;
         itemLine.Description = dto.Description;
-        itemLine.UpdatedAt = DateTime.UtcNow;
         _itemLine.Update(itemLine);
 
         await _itemLine.SaveChangesAsync();

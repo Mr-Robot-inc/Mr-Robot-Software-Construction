@@ -58,7 +58,6 @@ public class OrderService : IOrderService
 
     public async Task<OrderDto> CreateAsync(CreateOrderDto dto)
     {
-        var date = DateTime.UtcNow;
 
         var order = new Order
         {
@@ -72,8 +71,6 @@ public class OrderService : IOrderService
             WarehouseId = dto.WarehouseId,
             ShipToClientId = dto.ShipToClientId,
             BillToClientId = dto.BillToClientId,
-            CreatedAt = date,
-            UpdatedAt = date
         };
 
         _orders.Add(order);
@@ -96,7 +93,6 @@ public class OrderService : IOrderService
         order.WarehouseId = dto.WarehouseId;
         order.ShipToClientId = dto.ShipToClientId;
         order.BillToClientId = dto.BillToClientId;
-        order.UpdatedAt = DateTime.UtcNow;
 
         await _orders.SaveChangesAsync();
 

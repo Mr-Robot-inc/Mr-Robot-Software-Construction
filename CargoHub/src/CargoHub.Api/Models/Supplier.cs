@@ -1,7 +1,6 @@
 namespace CargoHub.Api.Models;
-public class Supplier : IEntity
+public class Supplier : BaseEntity
 {
-	public int Id { get; set; }
 	public string Code { get; set; }
 	public string Name { get; set; }
 	public string Address { get; set; }
@@ -12,6 +11,4 @@ public class Supplier : IEntity
 	public string ContactName { get; set; }
 	public string ContactPhone { get; set; }
 	public string Reference { get; set; }
-	public DateTime CreatedAt { get; set; }
-	public DateTime UpdatedAt { get; set; }
 }

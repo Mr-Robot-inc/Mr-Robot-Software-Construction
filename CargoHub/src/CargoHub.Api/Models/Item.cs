@@ -1,7 +1,6 @@
 namespace CargoHub.Api.Models;
-public class Item : IEntity
+public class Item : BaseEntity
 {
-    public int Id { get; set; }
     public string Code  { get; set; }
     public string Description { get; set; }
     public string BarCode { get; set; }
@@ -17,8 +16,7 @@ public class Item : IEntity
     public int OrderMultiple { get; set; }
     public int SupplierId { get; set; }
     public string SupplierSku { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+
     public List<Inventory> Inventories { get; set; } = new();
 
     // used for foreign keys

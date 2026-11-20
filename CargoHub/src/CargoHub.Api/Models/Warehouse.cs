@@ -1,7 +1,6 @@
 namespace CargoHub.Api.Models;
-public class Warehouse : IEntity
+public class Warehouse : BaseEntity
 {
-    public int Id { get; set; }
     public string Code { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
@@ -12,8 +11,6 @@ public class Warehouse : IEntity
     public string ContactName { get; set; }
     public string ContactPhone { get; set; }
     public string ContactEmail { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
 
     // Navigation property for the related locations
     public ICollection<Location> Locations { get; set; } = new List<Location>();

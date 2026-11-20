@@ -31,8 +31,6 @@ public class ItemTypeService : IItemTypeService
         {
             Name = dto.Name,
             Description = dto.Description,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
 
         _itemTypes.Add(itemType);
@@ -48,7 +46,6 @@ public class ItemTypeService : IItemTypeService
 
         itemType.Name = dto.Name;
         itemType.Description = dto.Description;
-        itemType.UpdatedAt = DateTime.UtcNow;
         _itemTypes.Update(itemType);
 
         await _itemTypes.SaveChangesAsync();

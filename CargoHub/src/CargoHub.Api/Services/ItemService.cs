@@ -84,8 +84,6 @@ public class ItemService : IItemService
             OrderMultiple = dto.OrderMultiple,
             SupplierId = dto.SupplierId,
             SupplierSku = dto.SupplierSku,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
 
         _items.Add(item);
@@ -122,7 +120,6 @@ public class ItemService : IItemService
         item.OrderMultiple = dto.OrderMultiple;
         item.SupplierId = dto.SupplierId;
         item.SupplierSku = dto.SupplierSku;
-        item.UpdatedAt = DateTime.UtcNow;
 
         await _items.SaveChangesAsync();
 

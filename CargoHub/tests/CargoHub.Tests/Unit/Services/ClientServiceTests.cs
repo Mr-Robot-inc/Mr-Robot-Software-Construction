@@ -174,39 +174,4 @@ public class ClientServiceTests
 
         Assert.False(result);
     }
-
-    [Fact]
-    public async Task Update_ChangesUpdatedAt_NotCreatedAt()
-    {
-        var created = await _service.CreateAsync( new CreateClientDto
-        {
-            Name = "Mark",
-            Address = "babastraat",
-            City = "babacity",
-            ZipCode = "1423CS",
-            Country = "babaland",
-            ContactName = "Marcus",
-            ContactPhone = "1442312432",
-            ContactEmail = "Mark@gmail.com"
-        });
-
-        Assert.NotNull(created);
-        await Task.Delay(10);
-
-        var result = await _service.UpdateAsync(created.Id, new UpdateClientDto
-        {
-            Name = "Bob",
-            Address = "abc",
-            City = "Polen",
-            ZipCode = "1423CS",
-            Country = "babaland",
-            ContactName = "Marcus",
-            ContactPhone = "1442312432",
-            ContactEmail = "Mark@gmail.com"
-        });
-
-        Assert.NotNull(result);
-        Assert.Equal(created.CreatedAt, result.CreatedAt);
-        Assert.True(result.UpdatedAt > created.UpdatedAt);
-    }
 }

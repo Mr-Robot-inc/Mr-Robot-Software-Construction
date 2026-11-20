@@ -47,8 +47,6 @@ public class SupplierService : ISupplierService
             ContactName = dto.ContactName,
             ContactPhone = dto.ContactPhone,
             Reference = dto.Reference,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
         _supplierRepository.Add(supplier);
         await _supplierRepository.SaveChangesAsync();
@@ -77,7 +75,6 @@ public class SupplierService : ISupplierService
         existingSupplier.ContactName = dto.ContactName;
         existingSupplier.ContactPhone = dto.ContactPhone;
         existingSupplier.Reference = dto.Reference;
-        existingSupplier.UpdatedAt = DateTime.UtcNow;
 
         await _supplierRepository.SaveChangesAsync();
 

@@ -39,8 +39,6 @@ public class ClientService : IClientService
             ContactName = dto.ContactName,
             ContactPhone = dto.ContactPhone,
             ContactEmail = dto.ContactEmail,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
         };
 
         _clients.Add(client);
@@ -63,7 +61,6 @@ public class ClientService : IClientService
         client.ContactName = dto.ContactName;
         client.ContactPhone = dto.ContactPhone;
         client.ContactEmail = dto.ContactEmail;
-        client.UpdatedAt = DateTime.UtcNow;
 
         await _clients.SaveChangesAsync();
 
@@ -96,6 +93,5 @@ public class ClientService : IClientService
         ContactEmail = client.ContactEmail,
         CreatedAt = client.CreatedAt,
         UpdatedAt = client.UpdatedAt
-
     };
 }

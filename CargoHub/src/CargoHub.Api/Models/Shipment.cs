@@ -1,6 +1,6 @@
 ﻿namespace CargoHub.Api.Models;
 
-public class Shipment : IEntity
+public class Shipment : BaseEntity
 {
     public int Id { get; set; }
     public string Reference { get; set; }
@@ -11,6 +11,4 @@ public class Shipment : IEntity
     public string CarrierName { get; set; }
     public string ShippingMethod { get; set; }
     public string PaymentType { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
 }

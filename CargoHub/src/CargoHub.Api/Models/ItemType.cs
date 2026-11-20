@@ -1,12 +1,9 @@
 ﻿namespace CargoHub.Api.Models;
 
-public class ItemType : IEntity
+public class ItemType : BaseEntity
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public string? Description { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
 
     // used for foreign keys
     public ICollection<Item> Items { get; set; } = new List<Item>();
