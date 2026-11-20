@@ -1,0 +1,65 @@
+@baseUrl = http://localhost:8080
+
+### Alle orders ophalen
+GET {{baseUrl}}/api/orders
+
+### Order bij ID ophalen
+GET {{baseUrl}}/api/orders/1
+
+### Alle order items ophalen bij een order ID
+GET {{baseUrl}}/api/orders/1/items
+
+### Alle orders ophalen bij een client ID
+GET {{baseUrl}}/api/orders/client/1
+
+### Create een order
+POST {{baseUrl}}/api/orders
+Content-Type: application/json
+
+{
+    "clientId": 1,
+    "orderDate": "2026-11-15T10:00:00Z",
+    "requestDate": "2026-11-20T10:00:00Z",
+    "reference": "Idk",
+    "customerPoNumber": "Idk",
+    "orderStatus": "Idk",
+    "shippingNotes": "Idk",
+    "warehouseId": 1,
+    "shipToClientId": 1,
+    "billToClientId": 1
+}
+
+### Update een order
+PUT {{baseUrl}}/api/orders/1
+Content-Type: application/json
+
+{
+    "clientId": 1,
+    "orderDate": "2026-11-15T10:00:00Z",
+    "requestDate": "2026-11-20T10:00:00Z",
+    "reference": "Idk",
+    "customerPoNumber": "Idk",
+    "orderStatus": "Idk",
+    "shippingNotes": "Idk",
+    "warehouseId": 1,
+    "shipToClientId": 1,
+    "billToClientId": 1
+}
+
+### Update alle order items binnen een order
+PUT {{baseUrl}}/api/orders/1/items
+Content-Type: application/json
+
+[
+    {
+        "itemId": 1,
+        "amount": 5
+    },
+    {
+        "itemId": 2,
+        "amount": 3
+    }
+]
+
+### Order verwijderen
+DELETE {{baseUrl}}/api/orders/1

@@ -28,7 +28,7 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
             Province = "ver",
             Country = "Countryroad",
             ContactName = "Bob",
-            ContactPhone = "123456789",
+            ContactPhone = "0625333378",
             ContactEmail = "bob@gmail.com",
         };
     }
@@ -68,7 +68,7 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
             Province = "Frank Herbert",
             Country = "Frank Herbert",
             ContactName = "Frank Herbert",
-            ContactPhone = "Frank Herbert",
+            ContactPhone = "0625333378",
             ContactEmail = "bob@gmail.com",
         };
 
@@ -117,7 +117,7 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
             Province = "Frank Herbert",
             Country = "Frank Herbert",
             ContactName = "Frank Herbert",
-            ContactPhone = "Frank Herbert",
+            ContactPhone = "0625333378",
             ContactEmail = "FrankHerbert@gmail.com",
         };
 
@@ -137,8 +137,8 @@ public class ClientsApiTests : IClassFixture<CargohubApiFactory>
         Assert.Equal("Frank Herbert", saved.Province);
         Assert.Equal("Frank Herbert", saved.Country);
         Assert.Equal("Frank Herbert", saved.ContactName);
-        Assert.Equal("Frank Herbert", saved.ContactPhone);
-        Assert.Equal("Frank Herbert", saved.ContactEmail);
+        Assert.Equal("0625333378", saved.ContactPhone);
+        Assert.Equal("FrankHerbert@gmail.com", saved.ContactEmail);
 
     }
 

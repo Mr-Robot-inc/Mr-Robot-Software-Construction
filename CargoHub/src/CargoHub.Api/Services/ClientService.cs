@@ -70,10 +70,10 @@ public class ClientService : IClientService
         return ToDto(client);
     }
 
-    public async Task<bool?> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var client = await _clients.GetByIdAsync(id);
-        if (client is null) return null;
+        if (client is null) return false;
 
         _clients.Delete(client);
         await _clients.SaveChangesAsync();

@@ -24,7 +24,6 @@ public record ItemDto
 
 public record CreateItemDto
 {
-    public int Id { get; set; }
     public string Code  {get; init; }
     public string Description { get; init; }
     public string BarCode { get; init; }

@@ -1,0 +1,4 @@
+@baseUrl = http://localhost:8080
+
+### Alle transfers ophalen
+GET {{baseUrl}}/api/transfers
