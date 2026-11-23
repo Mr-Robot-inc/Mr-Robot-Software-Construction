@@ -60,6 +60,17 @@ public class AppDbContext : DbContext
             .HasForeignKey(i => i.ItemTypeId)         
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<TransferItem>()
+            .HasOne(ti => ti.Transfer)
+            .WithMany(t => t.TransferItems)
+            .HasForeignKey(ti => ti.TransferId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<TransferItem>()
+            .HasOne(ti => ti.Item)
+            .WithMany(i => i.TransferItems)
+            .HasForeignKey(ti => ti.ItemId)
+            .OnDelete(DeleteBehavior.Restrict);
 
 
     }

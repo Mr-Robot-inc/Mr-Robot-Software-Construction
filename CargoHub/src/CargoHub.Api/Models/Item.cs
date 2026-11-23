@@ -23,4 +23,7 @@ public class Item : BaseEntity
     public ItemGroup ItemGroup { get; set; }
     public ItemType ItemType { get; set; }
     public ItemLine ItemLine { get; set; }
+    public List<TransferItem> TransferItems { get; set; } = new();
+
+
 }
