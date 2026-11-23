@@ -539,6 +539,10 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("TransferId");
+
                     b.ToTable("TransferItems");
                 });
 
@@ -658,9 +662,30 @@ namespace CargoHub.Api.Migrations
                     b.Navigation("Warehouse");
                 });
 
+            modelBuilder.Entity("CargoHub.Api.Models.TransferItem", b =>
+                {
+                    b.HasOne("CargoHub.Api.Models.Item", "Item")
+                        .WithMany("TransferItems")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CargoHub.Api.Models.Transfer", "Transfer")
+                        .WithMany("TransferItems")
+                        .HasForeignKey("TransferId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Transfer");
+                });
+
             modelBuilder.Entity("CargoHub.Api.Models.Item", b =>
                 {
                     b.Navigation("Inventories");
+
+                    b.Navigation("TransferItems");
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemGroup", b =>
@@ -676,6 +701,11 @@ namespace CargoHub.Api.Migrations
             modelBuilder.Entity("CargoHub.Api.Models.ItemType", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.Transfer", b =>
+                {
+                    b.Navigation("TransferItems");
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Warehouse", b =>
