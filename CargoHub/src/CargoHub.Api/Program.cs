@@ -28,8 +28,8 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IItemTypeService, ItemTypeService>();
 builder.Services.AddScoped<IItemLineService, ItemLineService>();
 builder.Services.AddScoped<IItemGroupService, ItemGroupService>();
-
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ITransferItemService, TransferItemService>();
 
 
 var app = builder.Build();

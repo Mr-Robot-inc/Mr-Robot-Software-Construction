@@ -24,7 +24,7 @@ public class TransfersController : ControllerBase
         return transfer is null ? NotFound() : Ok(transfer);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("{id:int}/items")]
     public async Task<ActionResult<List<TransferItemDto>>> GetItemsInTransfer(int id)
     {
         var transfers = await _transfers.GetItemsInTransferAsync(id);

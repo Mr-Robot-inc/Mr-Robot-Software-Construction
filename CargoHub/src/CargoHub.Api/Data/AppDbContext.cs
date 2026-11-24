@@ -60,8 +60,59 @@ public class AppDbContext : DbContext
             .HasForeignKey(i => i.ItemTypeId)         
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Shipment>()
+            .HasOne<Order>()
+            .WithMany()
+            .HasForeignKey(s => s.OrderId)
+            .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Order>()
+            .HasOne<Client>()
+            .WithMany()
+            .HasForeignKey(o => o.ClientId)
+            .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Order>()
+            .HasOne<Client>()
+            .WithMany()
+            .HasForeignKey(o => o.ShipToClientId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Order>()
+            .HasOne<Client>()
+            .WithMany()
+            .HasForeignKey(o => o.BillToClientId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Order>()
+            .HasOne<Warehouse>()
+            .WithMany()
+            .HasForeignKey(o => o.WarehouseId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<OrderItem>()
+            .HasOne<Order>()
+            .WithMany()
+            .HasForeignKey(oi => oi.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<OrderItem>()
+            .HasOne<Item>()
+            .WithMany()
+            .HasForeignKey(oi => oi.ItemId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<TransferItem>()
+            .HasOne<Transfer>()
+            .WithMany()
+            .HasForeignKey(ti => ti.TransferId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<TransferItem>()
+            .HasOne<Item>()
+            .WithMany()
+            .HasForeignKey(ti => ti.ItemId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
     
     public DbSet<Item> Items => Set<Item>();
@@ -78,4 +129,5 @@ public class AppDbContext : DbContext
     public DbSet<ItemType> ItemTypes => Set<ItemType>();
     public DbSet<ItemLine> ItemLines => Set<ItemLine>();
     public DbSet<ItemGroup> ItemGroups => Set<ItemGroup>();
+    public DbSet<ShipmentItem> ShipmentItems => Set<ShipmentItem>();
 }

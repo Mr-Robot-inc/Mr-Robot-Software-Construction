@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:8080
+
+### Alle transfer items ophalen
+GET {{baseUrl}}/api/transferitems
+
+### Een transfer item ophalen
+GET {{baseUrl}}/api/transferitems/1
+
+### Items van een transfer ophalen
+GET {{baseUrl}}/api/transferitems/transfer/1
+
+### Aanmaken
+POST {{baseUrl}}/api/transferitems
+Content-Type: application/json
+
+{
+    "transferId": 1,
+    "itemId": 1,
+    "amount": 10
+}
+
+### Updaten
+PUT {{baseUrl}}/api/transferitems/1
+Content-Type: application/json
+
+{
+    "transferId": 1,
+    "itemId": 1,
+    "amount": 20
+}
+
+### Alle items van een transfer vervangen
+PUT {{baseUrl}}/api/transferitems/transfer/1
+Content-Type: application/json
+
+[
+    { "itemId": 1, "amount": 5 },
+    { "itemId": 2, "amount": 8 }
+]
+
+### Verwijderen
+DELETE {{baseUrl}}/api/transferitems/1
+
+### Alle items van een transfer verwijderen
+DELETE {{baseUrl}}/api/transferitems/transfer/1

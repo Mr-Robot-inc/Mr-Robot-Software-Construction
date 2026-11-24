@@ -1,6 +1,7 @@
 using CargoHub.Api.Data;
 using CargoHub.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CargoHub.Api.Repositories;
 
@@ -18,6 +19,9 @@ public class Repository<T> : IRepository<T> where T : class, IEntity
 
     public async Task<T?> GetByIdAsync(int id)
         => await _context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+    
+    public async Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        => await _context.Set<T>().Where(predicate).ToListAsync();
 
     public void Add(T entity) => _context.Set<T>().Add(entity);
     public void Update(T entity) => _context.Set<T>().Update(entity);
