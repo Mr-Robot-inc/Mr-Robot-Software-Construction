@@ -1,7 +1,7 @@
 using CargoHub.Api.Dtos;
-using CargoHub.Api.Models;
 using CargoHub.Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CargoHub.Api.Controllers;
 
@@ -35,22 +35,57 @@ public class ShipmentsController : ControllerBase
         return Ok(orderIds);
     }
 
+    [HttpGet("{id:int}/items")]
+    public async Task<ActionResult<List<ShipmentItemDto>>> GetShipmentItemsInShipment(int id)
+    {
+        if (await _shipments.GetByIdAsync(id) is null) return NotFound();
+        return Ok(await _shipments.GetShipmentItemsInShipmentAsync(id));
+    }
+
     [HttpPost]
     public async Task<ActionResult<ShipmentDto>> Create(CreateShipmentDto dto)
     {
-        var created = await _shipments.CreateAsync(dto);
-        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+        try
+        {
+            var created = await _shipments.CreateAsync(dto);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
     }
 
     [HttpPut("{id:int}")]
     public async Task<ActionResult<ShipmentDto>> Update(int id, UpdateShipmentDto dto)
     {
-        var updated = await _shipments.UpdateAsync(id, dto);
-        return updated is null ? NotFound() : Ok(updated);
+        try
+        {
+            var updated = await _shipments.UpdateAsync(id, dto);
+            return updated is null ? NotFound() : Ok(updated);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+    [HttpPut("{id:int}/items")]
+    public async Task<ActionResult> UpdateShipmentItemsInShipment(int id, List<ShipmentItemDto> shipmentItems)
+    {
+        try
+        {
+            await _shipments.UpdateShipmentItemsInShipmentAsync(id, shipmentItems);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<ActionResult<ShipmentDto>> Delete(int id)
+    public async Task<ActionResult<bool?>> Delete(int id)
     {
         var deleted = await _shipments.DeleteAsync(id);
         return deleted is null ? NotFound() : Ok(deleted);

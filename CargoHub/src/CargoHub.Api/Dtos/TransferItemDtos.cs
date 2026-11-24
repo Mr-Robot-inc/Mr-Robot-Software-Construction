@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 namespace CargoHub.Api.Dtos;
 
 public record TransferItemDto
@@ -10,14 +11,20 @@ public record TransferItemDto
 
 public record CreateTransferItemDto
 {
+    [Range(1, int.MaxValue)]
     public int TransferId { get; init; }
+    [Range(1, int.MaxValue)]
     public int ItemId { get; init; }
+    [Range(1, int.MaxValue)]
     public int Amount { get; init; }
 }
 
 public record UpdateTransferItemDto
 {
+    [Range(1, int.MaxValue)]
     public int TransferId { get; init; }
+    [Range(1, int.MaxValue)]
     public int ItemId { get; init; }
+    [Range(1, int.MaxValue)]
     public int Amount { get; init; }
 }

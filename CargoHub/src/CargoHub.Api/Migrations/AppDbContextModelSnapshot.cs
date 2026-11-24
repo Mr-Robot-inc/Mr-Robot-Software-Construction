@@ -74,7 +74,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Inventory", b =>
@@ -112,7 +112,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Inventories");
+                    b.ToTable("Inventories", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Item", b =>
@@ -188,7 +188,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasIndex("ItemTypeId");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemGroup", b =>
@@ -218,7 +218,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemGroups");
+                    b.ToTable("ItemGroups", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemLine", b =>
@@ -244,7 +244,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemLines");
+                    b.ToTable("ItemLines", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.ItemType", b =>
@@ -270,7 +270,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemTypes");
+                    b.ToTable("ItemTypes", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Location", b =>
@@ -302,7 +302,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Order", b =>
@@ -351,7 +351,15 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("BillToClientId");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ShipToClientId");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.OrderItem", b =>
@@ -376,7 +384,11 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderItems");
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Shipment", b =>
@@ -425,7 +437,31 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shipments");
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Shipments", (string)null);
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.ShipmentItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ShipmentId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShipmentItems", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Supplier", b =>
@@ -484,7 +520,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Suppliers", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Transfer", b =>
@@ -517,7 +553,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transfers");
+                    b.ToTable("Transfers", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.TransferItem", b =>
@@ -539,7 +575,11 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TransferItems");
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("TransferId");
+
+                    b.ToTable("TransferItems", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Warehouse", b =>
@@ -598,7 +638,7 @@ namespace CargoHub.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouses");
+                    b.ToTable("Warehouses", (string)null);
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Inventory", b =>
@@ -656,6 +696,72 @@ namespace CargoHub.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Warehouse");
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.Order", b =>
+                {
+                    b.HasOne("CargoHub.Api.Models.Client", null)
+                        .WithMany()
+                        .HasForeignKey("BillToClientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CargoHub.Api.Models.Client", null)
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CargoHub.Api.Models.Client", null)
+                        .WithMany()
+                        .HasForeignKey("ShipToClientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CargoHub.Api.Models.Warehouse", null)
+                        .WithMany()
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.OrderItem", b =>
+                {
+                    b.HasOne("CargoHub.Api.Models.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CargoHub.Api.Models.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.Shipment", b =>
+                {
+                    b.HasOne("CargoHub.Api.Models.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CargoHub.Api.Models.TransferItem", b =>
+                {
+                    b.HasOne("CargoHub.Api.Models.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CargoHub.Api.Models.Transfer", null)
+                        .WithMany()
+                        .HasForeignKey("TransferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CargoHub.Api.Models.Item", b =>
